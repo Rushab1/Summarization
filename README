@@ -1,0 +1,20 @@
+###############################################################
+Summarizers
+###############################################################
+Create a directory named Summarizers. Clone OpenNMT-py and Chen&Bansal summarizer repositories
+Create a directory named modelfiles. Create 2 sub-directories named ./modelfiles/OpenNMT-py/ and ./modelfiles/chen_and_bansal/
+Download the Transformer summarizer sum_transformer_model_acc_57.25_ppl_9.22_e16.pt in the OpenNMT directory and extract pretrained models from chena_and_bansal into the chen_and_bansal directory (link on the chen_and_bansal repo)
+
+###############################################################
+Packages
+###############################################################
+tensorflow, tensorflow_hub, tensorflow-gpu, pytorch
+
+Create a folder called packages - install pyrouge, stanford coreNLP 
+
+Installing pyrouge:
+Follow directions here: https://poojithansl7.wordpress.com/2018/08/04/setting-up-rouge/
+For running pyrouge tests: cd pyrouge/pyrouge/ && python test.py
+Try not to run sudo and using a virtual env
+
+
