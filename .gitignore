@@ -1,0 +1,6 @@
+Data/*
+modelfiles/*
+packages/*
+*pyc
+*pycache*
+TMP/*
