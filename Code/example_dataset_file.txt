@@ -1,0 +1,1591 @@
+[
+	{
+	"name": "1",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "A day after the Monsanto Company and Pharmacia & Upjohn announced a $ 27 billion merger to create a global pharmaceutical company , their stocks plummeted .",
+	"score": "12.160462752632473",
+	"sureAlign": "0-1 1-2 2-4 3-5 4-6 5-7 6-8 7-9 8-10 9-12 10-13 11-14 12-15 18-22 19-23 20-24 21-25 22-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "2",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Investors were apparently disappointed that neither company was taken over by a much bigger company at a rich premium and concerned that the combined company could be dragged down by Monsanto 's agriculture division .",
+	"score": "8.877420840056047",
+	"sureAlign": "22-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "3",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "'' Clearly the market was looking for an outright takeover of one of the companies , '' said William Fiala , an analyst at Edward Jones Inc. in St. Louis . ''",
+	"score": "8.881585162618887",
+	"sureAlign": "22-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "4",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "But also , Wall Street does n't like uncertainty , and right now the ag business is blanketed with uncertainty . ''",
+	"score": "8.882630721382473",
+	"sureAlign": "22-20",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "5",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Indeed , Monsanto 's agriculture division has been considered a liability depressing the company 's stock for months .",
+	"score": "9.044773931088654",
+	"sureAlign": "2-2 16-15 22-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "6",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "When the company talked merger , it was Searle , its pharmaceutical unit and creator of the blockbuster arthritis drug Celebrex , that garnered more interest .",
+	"score": "8.926871921705162",
+	"sureAlign": "12-4 22-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "7",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "'' Everyone today is looking at the albatross that is this agriculture division , '' said Sano Shimoda , an analyst at Bioscience Securities in Orinda , Calif. '' But I think they had to do a deal , and this was the only deal they could do . ''",
+	"score": "8.867963707965353",
+	"sureAlign": "22-48",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "8",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "It was Monsanto 's only option , stock analysts said yesterday , because no one wanted the agriculture unit , despite its best-selling herbicide , Roundup , and its pioneering development of bioengineered crops .",
+	"score": "9.019092725670856",
+	"sureAlign": "2-2 16-7 22-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "9",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The merger suggests a reversal for Monsanto , which less than five years ago embarked on an ambitious plan to transform itself from a stodgy chemical maker into a life sciences company that would use biotechnology to create a '' brave new world '' of sustainable agriculture .",
+	"score": "9.009852533755096",
+	"sureAlign": "2-6 12-1 22-47",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "10",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "To speed its drive , the company spent more than $ 8 billion in just under two years to acquire some of the world 's largest seed companies .",
+	"score": "9.0542980691661",
+	"sureAlign": "9-10 10-11 11-12 22-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "11",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Its plan was to use the new science of genomics to manipulate the genes of plants to create corn that can ward off pests because of an inbred pesticide and soybeans that could withstand chemical spraying to kill weeds .",
+	"score": "8.87243121603261",
+	"sureAlign": "22-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "12",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Nearly 70 million acres were planted with genetically engineered crops in 1999 , an indication of the company 's success in marketing to farmers .",
+	"score": "8.90801073157269",
+	"sureAlign": "11-2 22-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "13",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "But the very strategy that has propelled the biotechnology revolution on the farm continues to drag down a company that some in Europe have labeled a producer of '' Frankenstein Foods . ''",
+	"score": "8.88099006984545",
+	"sureAlign": "22-31",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "14",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Now that Monsanto and Pharmacia have agreed to merge , the time has come to decide what will happen to one of the world 's biggest agricultural chemical and seed companies -- a pioneer in the development of biotechnology .",
+	"score": "9.337473993716033",
+	"sureAlign": "2-2 3-2 4-3 5-4 22-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "15",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The executives who will lead the combined company say they will create an agricultural subsidiary and then sell about 20 percent of it in an initial public offering of stock sometime next year , a move that would generate cash to help the company reduce its nearly $ 6 billion in debt .",
+	"score": "8.90178514563519",
+	"sureAlign": "16-29 22-52",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "16",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The move , they said , would allow investors to choose between the drug and agriculture divisions .",
+	"score": "8.884037183678668",
+	"sureAlign": "22-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "17",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "In talking about the combination , though , executives have focused not on the agriculture unit but on the advantages of combining Pharmacia and Monsanto 's Searle unit , which together would have one of the industry 's biggest sales forces .",
+	"score": "8.894460263459578",
+	"sureAlign": "5-22 22-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "18",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The agriculture division remained , at least among some of Monsanto 's top executives , a possible sleeper , an out-of-favor business that was too important to dump but too much of a liability to keep in whole , analysts said .",
+	"score": "8.953592715056047",
+	"sureAlign": "2-10 22-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "19",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "'' They believe the valuation for the ag side is at the bottom , '' said James Wilbur , an analyst at Salomon Smith Barney . ''",
+	"score": "8.884250806725543",
+	"sureAlign": "22-25",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "20",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "A year from now it could be robust , so why not keep it ? ''",
+	"score": "8.786428036897078",
+	"sureAlign": "",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "21",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Because of how the merger will be accounted for , the combined company can not sell the entire unit immediately anyway .",
+	"score": "8.932327933933424",
+	"sureAlign": "12-4 22-21",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "22",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The Monsanto executives have consistently outlined the growth potential of plant biotechnology , with huge expected gains once the company broadens its pipeline and starts genetically altering crops to produce more nutritious foods .",
+	"score": "9.00126316236413",
+	"sureAlign": "2-1 22-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "23",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Having spent billions of dollars to develop genetically engineered crops , Monsanto has lobbied for worldwide approval , so that the company can sell to farmers everywhere and so that foreign markets will be receptive to the exported biotechnology crops of American farmers .",
+	"score": "8.971230548361074",
+	"sureAlign": "2-11 11-2 22-43",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "24",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "In Europe , though , Monsanto has suffered from a vicious backlash against genetically modified foods , and a movement against the products has begun to take hold this year among Americans as well .",
+	"score": "8.988981164020041",
+	"sureAlign": "2-5 22-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "25",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Monsanto executives say that the products have been proved safe and that once the storm clouds clear , Monsanto stands to gain the most because it is the world 's second largest seed company and the developer or licensee of more than 90 percent of the genetically modified crops now on the market .",
+	"score": "8.979507446289062",
+	"sureAlign": "2-0 22-53",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "26",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "In 1996 , just 2.8 million acres worldwide were planted with biotechnology seeds ; in 1999 , an estimated 70 million acres were planted .",
+	"score": "8.936423923658287",
+	"sureAlign": "11-5 22-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "27",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "And Roundup , the company 's best-selling herbicide , has been a cash cow for nearly 20 years , racking up more than $ 2 billion in sales in 1998 , and effectively crippling its competitors in the agricultural chemicals market because of its compatability with many biotech seeds .",
+	"score": "9.081830895465353",
+	"sureAlign": "9-23 10-24 11-25 22-49",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "28",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Some investors have decided not to stick around .",
+	"score": "8.866701872452445",
+	"sureAlign": "22-8",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "29",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Yesterday , shares of Monsanto dropped $ 5.125 , to $ 36.625 .",
+	"score": "8.94189453125",
+	"sureAlign": "2-4 22-12",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "30",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The stock is down 22.9 percent in the last year ; and shares of Pharmacia fell $ 3.125 , to $ 47.125 .",
+	"score": "8.897945238196332",
+	"sureAlign": "5-14 22-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "31",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The problem might be , as Mr. Wilbur outlined , simply a question of uncertainty .",
+	"score": "8.881103515625",
+	"sureAlign": "22-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "32",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "After moving swiftly to create , market and license its biotechnology products , and acquire some of the world 's largest seed companies , Monsanto has stumbled repeatedly in its effort to integrate its units and convince the public of the feasibility of what it has called the new agriculture .",
+	"score": "8.945681364639945",
+	"sureAlign": "1-0 2-24 22-50",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "33",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Monsanto and other big seed companies have been embroiled in a series of lawsuits over patent infringement .",
+	"score": "9.001265816066576",
+	"sureAlign": "2-0 22-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "34",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Farmers have complained about Monsanto 's aggressive tactics , which included hiring detectives , to enforce its contracts .",
+	"score": "8.978366354237432",
+	"sureAlign": "2-4 22-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "35",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "There have also been growing concerns about the safety of genetically modified seeds , which have been approved for use in the United States , but are still little understood by the public .",
+	"score": "8.878440525220787",
+	"sureAlign": "22-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "36",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Monsanto is also facing legal challenges because of its dominance in the seed market .",
+	"score": "8.995781276537025",
+	"sureAlign": "2-0 22-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "37",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Just last week , a group of leading antitrust lawyers filed a class-action lawsuit against Monsanto , saying the company rushed its biotechnology products to market without proper testing .",
+	"score": "8.893213023310123",
+	"sureAlign": "2-15 22-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "38",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The suit , backed by some environmental advocates , also charged the company with masterminding an international cartel that sought to fix prices in the corn and soybean markets .",
+	"score": "8.882612808890965",
+	"sureAlign": "22-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "39",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Monsanto executives said the lawsuit has no merit and called it , in effect , political grandstanding .",
+	"score": "9.001265816066576",
+	"sureAlign": "2-0 22-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "40",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "The class-action lawyers said they were preparing a separate suit in the cotton market .",
+	"score": "8.879518591839334",
+	"sureAlign": "22-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "41",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "And the Justice Department said it had broadened an investigation into Monsanto 's proposed acquisition of Delta and Pine Land , the world 's biggest cotton seed company , to include the cotton seed market .",
+	"score": "8.940969052522078",
+	"sureAlign": "2-11 22-35",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "42",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Among other things , Monsanto said the Justice Department had asked the company for information about its licensing agreements -- an issue at the heart of the class-action lawsuit .",
+	"score": "8.997082917586617",
+	"sureAlign": "2-4 22-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "43",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Yesterday , Monsanto withdrew its filing for Justice Department approval for approval of the Delta and Pine Land acquisition , ending a $ 1.9 billion deal proposed 18 months ago .",
+	"score": "9.007923292077106",
+	"sureAlign": "2-2 22-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "44",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Top executives at Monsanto have likened the new world of agriculture to the technology revolution under way in Silicon Valley , and the seed to a personal computer .",
+	"score": "9.022421795388926",
+	"sureAlign": "2-3 22-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "45",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Monsanto is Microsoft or Intel , writing the software and driving the information-laden seed into the market .",
+	"score": "9.001265816066576",
+	"sureAlign": "2-0 22-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "46",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Robert B. Shapiro , the chief executive at Monsanto , who will become chairman of the combined company , says the company is committed to biotechnology .",
+	"score": "8.970444389011549",
+	"sureAlign": "2-8 22-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "47",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Eventually , he says , the public and the stock market will come to see the value of biotechnology .",
+	"score": "8.923000833262568",
+	"sureAlign": "16-9 22-19",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "48",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "'' Underneath all the media noise is what has happened : in biotechnology we 've had the most successful product launch in the history of agriculture , '' Mr. Shapiro said in an interview last week . ''",
+	"score": "8.877790368121603",
+	"sureAlign": "22-36",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "49",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "What we are doing and what people think of us will eventually come into alignment . ''",
+	"score": "8.874282173488451",
+	"sureAlign": "22-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "50",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "In the meantime , stock analysts see more public pressure and shareholder doubts about the agriculture division and Mr. Shapiro 's leadership .",
+	"score": "8.899975320567256",
+	"sureAlign": "16-4 22-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "51",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "Biotechnology executives say it is the price Monsanto has to pay for being a pioneer .",
+	"score": "8.91224073327106",
+	"sureAlign": "2-7 22-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "52",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "'' He kind of put himself in this position , '' said Mr. Wilbur of Salomon Smith Barney . ''",
+	"score": "8.879529206649117",
+	"sureAlign": "22-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "53",
+	"id": "",
+	"source": "Day after Monsanto Co and Pharmacia & Upjohn announce $ 27 billion merger of equals in stock swap , their stocks plummet .",
+	"target": "He was really aggressive on the ag side and kind of bet the farm on this , and so far it has n't panned out . ''",
+	"score": "8.884250806725543",
+	"sureAlign": "22-25",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "54",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "A day after the Monsanto Company and Pharmacia & Upjohn announced a $ 27 billion merger to create a global pharmaceutical company , their stocks plummeted .",
+	"score": "9.018216378348214",
+	"sureAlign": "8-5 24-21 34-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "55",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Investors were apparently disappointed that neither company was taken over by a much bigger company at a rich premium and concerned that the combined company could be dragged down by Monsanto 's agriculture division .",
+	"score": "13.149593680245536",
+	"sureAlign": "4-0 5-3 6-4 7-5 8-6 9-7 10-8 11-9 12-10 13-12 14-13 15-14 16-15 17-17 18-18 20-19 21-20 22-21 23-23 24-24 25-25 26-26 27-27 28-28 29-29 30-30 31-31 32-32 33-33 34-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "56",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "'' Clearly the market was looking for an outright takeover of one of the companies , '' said William Fiala , an analyst at Edward Jones Inc. in St. Louis . ''",
+	"score": "9.078996930803571",
+	"sureAlign": "8-14 9-4 24-14 34-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "57",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "But also , Wall Street does n't like uncertainty , and right now the ag business is blanketed with uncertainty . ''",
+	"score": "8.921839250837053",
+	"sureAlign": "34-20",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "58",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Indeed , Monsanto 's agriculture division has been considered a liability depressing the company 's stock for months .",
+	"score": "9.150294712611608",
+	"sureAlign": "24-13 30-2 31-3 32-4 33-5 34-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "59",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "When the company talked merger , it was Searle , its pharmaceutical unit and creator of the blockbuster arthritis drug Celebrex , that garnered more interest .",
+	"score": "9.009909493582589",
+	"sureAlign": "8-2 9-7 34-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "60",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "'' Everyone today is looking at the albatross that is this agriculture division , '' said Sano Shimoda , an analyst at Bioscience Securities in Orinda , Calif. '' But I think they had to do a deal , and this was the only deal they could do . ''",
+	"score": "9.021216692243303",
+	"sureAlign": "32-11 33-12 34-48",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "61",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "It was Monsanto 's only option , stock analysts said yesterday , because no one wanted the agriculture unit , despite its best-selling herbicide , Roundup , and its pioneering development of bioengineered crops .",
+	"score": "8.946387590680803",
+	"sureAlign": "30-2 34-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "62",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The merger suggests a reversal for Monsanto , which less than five years ago embarked on an ambitious plan to transform itself from a stodgy chemical maker into a life sciences company that would use biotechnology to create a '' brave new world '' of sustainable agriculture .",
+	"score": "9.017103794642857",
+	"sureAlign": "24-31 32-46 33-46 34-47",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "63",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "To speed its drive , the company spent more than $ 8 billion in just under two years to acquire some of the world 's largest seed companies .",
+	"score": "9.027367292131697",
+	"sureAlign": "8-6 24-27 34-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "64",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Its plan was to use the new science of genomics to manipulate the genes of plants to create corn that can ward off pests because of an inbred pesticide and soybeans that could withstand chemical spraying to kill weeds .",
+	"score": "8.932291085379465",
+	"sureAlign": "34-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "65",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Nearly 70 million acres were planted with genetically engineered crops in 1999 , an indication of the company 's success in marketing to farmers .",
+	"score": "8.966610281808036",
+	"sureAlign": "24-17 34-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "66",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "But the very strategy that has propelled the biotechnology revolution on the farm continues to drag down a company that some in Europe have labeled a producer of '' Frankenstein Foods . ''",
+	"score": "9.048065185546875",
+	"sureAlign": "8-18 22-19 23-20 24-18 27-15 28-16 34-31",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "67",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Now that Monsanto and Pharmacia have agreed to merge , the time has come to decide what will happen to one of the world 's biggest agricultural chemical and seed companies -- a pioneer in the development of biotechnology .",
+	"score": "9.03908952985491",
+	"sureAlign": "24-30 32-26 33-38 34-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "68",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The executives who will lead the combined company say they will create an agricultural subsidiary and then sell about 20 percent of it in an initial public offering of stock sometime next year , a move that would generate cash to help the company reduce its nearly $ 6 billion in debt .",
+	"score": "9.054059709821429",
+	"sureAlign": "8-7 22-36 23-6 24-7 34-52",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "69",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The move , they said , would allow investors to choose between the drug and agriculture divisions .",
+	"score": "9.256865583147322",
+	"sureAlign": "4-8 32-15 33-16 34-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "70",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "In talking about the combination , though , executives have focused not on the agriculture unit but on the advantages of combining Pharmacia and Monsanto 's Searle unit , which together would have one of the industry 's biggest sales forces .",
+	"score": "9.059964425223214",
+	"sureAlign": "30-24 31-25 32-14 34-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "71",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The agriculture division remained , at least among some of Monsanto 's top executives , a possible sleeper , an out-of-favor business that was too important to dump but too much of a liability to keep in whole , analysts said .",
+	"score": "9.036481584821429",
+	"sureAlign": "13-30 30-10 31-11 32-1 33-2 34-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "72",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "'' They believe the valuation for the ag side is at the bottom , '' said James Wilbur , an analyst at Salomon Smith Barney . ''",
+	"score": "8.926359340122767",
+	"sureAlign": "34-25",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "73",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "A year from now it could be robust , so why not keep it ? ''",
+	"score": "8.943412562779018",
+	"sureAlign": "25-5 26-6",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "74",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Because of how the merger will be accounted for , the combined company can not sell the entire unit immediately anyway .",
+	"score": "9.148794991629464",
+	"sureAlign": "8-12 23-11 24-12 34-21",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "75",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The Monsanto executives have consistently outlined the growth potential of plant biotechnology , with huge expected gains once the company broadens its pipeline and starts genetically altering crops to produce more nutritious foods .",
+	"score": "8.975148228236607",
+	"sureAlign": "8-19 24-19 34-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "76",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Having spent billions of dollars to develop genetically engineered crops , Monsanto has lobbied for worldwide approval , so that the company can sell to farmers everywhere and so that foreign markets will be receptive to the exported biotechnology crops of American farmers .",
+	"score": "9.008004324776786",
+	"sureAlign": "6-19 7-20 8-21 22-19 23-20 24-21 34-43",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "77",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "In Europe , though , Monsanto has suffered from a vicious backlash against genetically modified foods , and a movement against the products has begun to take hold this year among Americans as well .",
+	"score": "8.935570417131697",
+	"sureAlign": "34-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "78",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Monsanto executives say that the products have been proved safe and that once the storm clouds clear , Monsanto stands to gain the most because it is the world 's second largest seed company and the developer or licensee of more than 90 percent of the genetically modified crops now on the market .",
+	"score": "8.963423374720982",
+	"sureAlign": "24-33 30-18 34-53",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "79",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "In 1996 , just 2.8 million acres worldwide were planted with biotechnology seeds ; in 1999 , an estimated 70 million acres were planted .",
+	"score": "8.928533063616072",
+	"sureAlign": "34-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "80",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "And Roundup , the company 's best-selling herbicide , has been a cash cow for nearly 20 years , racking up more than $ 2 billion in sales in 1998 , and effectively crippling its competitors in the agricultural chemicals market because of its compatability with many biotech seeds .",
+	"score": "9.003086635044642",
+	"sureAlign": "8-4 32-38 33-48 34-49",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "81",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Some investors have decided not to stick around .",
+	"score": "8.988802664620536",
+	"sureAlign": "4-1 34-8",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "82",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Yesterday , shares of Monsanto dropped $ 5.125 , to $ 36.625 .",
+	"score": "8.917496163504465",
+	"sureAlign": "34-12",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "83",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The stock is down 22.9 percent in the last year ; and shares of Pharmacia fell $ 3.125 , to $ 47.125 .",
+	"score": "8.926993233816964",
+	"sureAlign": "34-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "84",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The problem might be , as Mr. Wilbur outlined , simply a question of uncertainty .",
+	"score": "8.920835658482142",
+	"sureAlign": "34-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "85",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "After moving swiftly to create , market and license its biotechnology products , and acquire some of the world 's largest seed companies , Monsanto has stumbled repeatedly in its effort to integrate its units and convince the public of the feasibility of what it has called the new agriculture .",
+	"score": "9.124581473214286",
+	"sureAlign": "8-22 24-22 30-24 31-25 32-49 33-49 34-50",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "86",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Monsanto and other big seed companies have been embroiled in a series of lawsuits over patent infringement .",
+	"score": "9.048317173549107",
+	"sureAlign": "8-5 24-5 34-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "87",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Farmers have complained about Monsanto 's aggressive tactics , which included hiring detectives , to enforce its contracts .",
+	"score": "8.942638288225446",
+	"sureAlign": "30-4 34-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "88",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "There have also been growing concerns about the safety of genetically modified seeds , which have been approved for use in the United States , but are still little understood by the public .",
+	"score": "8.966178676060268",
+	"sureAlign": "21-5 34-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "89",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Monsanto is also facing legal challenges because of its dominance in the seed market .",
+	"score": "8.919793701171875",
+	"sureAlign": "34-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "90",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Just last week , a group of leading antitrust lawyers filed a class-action lawsuit against Monsanto , saying the company rushed its biotechnology products to market without proper testing .",
+	"score": "8.981279645647321",
+	"sureAlign": "24-19 30-15 34-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "91",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The suit , backed by some environmental advocates , also charged the company with masterminding an international cartel that sought to fix prices in the corn and soybean markets .",
+	"score": "8.996377999441965",
+	"sureAlign": "8-12 15-12 24-12 34-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "92",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Monsanto executives said the lawsuit has no merit and called it , in effect , political grandstanding .",
+	"score": "8.92276349748884",
+	"sureAlign": "34-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "93",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "The class-action lawyers said they were preparing a separate suit in the cotton market .",
+	"score": "8.919793701171875",
+	"sureAlign": "34-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "94",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "And the Justice Department said it had broadened an investigation into Monsanto 's proposed acquisition of Delta and Pine Land , the world 's biggest cotton seed company , to include the cotton seed market .",
+	"score": "8.99505615234375",
+	"sureAlign": "24-27 30-11 34-35",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "95",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Among other things , Monsanto said the Justice Department had asked the company for information about its licensing agreements -- an issue at the heart of the class-action lawsuit .",
+	"score": "8.996377999441965",
+	"sureAlign": "8-12 15-12 24-12 34-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "96",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Yesterday , Monsanto withdrew its filing for Justice Department approval for approval of the Delta and Pine Land acquisition , ending a $ 1.9 billion deal proposed 18 months ago .",
+	"score": "8.932854352678572",
+	"sureAlign": "34-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "97",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Top executives at Monsanto have likened the new world of agriculture to the technology revolution under way in Silicon Valley , and the seed to a personal computer .",
+	"score": "8.931454031808036",
+	"sureAlign": "34-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "98",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Monsanto is Microsoft or Intel , writing the software and driving the information-laden seed into the market .",
+	"score": "8.92276349748884",
+	"sureAlign": "34-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "99",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Robert B. Shapiro , the chief executive at Monsanto , who will become chairman of the combined company , says the company is committed to biotechnology .",
+	"score": "9.161153738839285",
+	"sureAlign": "23-16 24-17 34-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "100",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Eventually , he says , the public and the stock market will come to see the value of biotechnology .",
+	"score": "8.9245361328125",
+	"sureAlign": "34-19",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "101",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "'' Underneath all the media noise is what has happened : in biotechnology we 've had the most successful product launch in the history of agriculture , '' Mr. Shapiro said in an interview last week . ''",
+	"score": "8.961262730189732",
+	"sureAlign": "32-25 33-35 34-36",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "102",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "What we are doing and what people think of us will eventually come into alignment . ''",
+	"score": "8.916353062220983",
+	"sureAlign": "34-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "103",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "In the meantime , stock analysts see more public pressure and shareholder doubts about the agriculture division and Mr. Shapiro 's leadership .",
+	"score": "9.13002406529018",
+	"sureAlign": "31-20 32-15 33-16 34-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "104",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "Biotechnology executives say it is the price Monsanto has to pay for being a pioneer .",
+	"score": "8.92320818219866",
+	"sureAlign": "30-7 34-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "105",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "'' He kind of put himself in this position , '' said Mr. Wilbur of Salomon Smith Barney . ''",
+	"score": "8.919800676618303",
+	"sureAlign": "34-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "106",
+	"id": "",
+	"source": "drop is seen reflecting investor disappointment that neither company was taken over by much bigger corporation at rich premium , and concern that combined company could be dragged down by Monsanto 's agricultural division .",
+	"target": "He was really aggressive on the ag side and kind of bet the farm on this , and so far it has n't panned out . ''",
+	"score": "8.926359340122767",
+	"sureAlign": "34-25",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "107",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "A day after the Monsanto Company and Pharmacia & Upjohn announced a $ 27 billion merger to create a global pharmaceutical company , their stocks plummeted .",
+	"score": "8.967339515686035",
+	"sureAlign": "2-4 19-7 31-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "108",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Investors were apparently disappointed that neither company was taken over by a much bigger company at a rich premium and concerned that the combined company could be dragged down by Monsanto 's agriculture division .",
+	"score": "8.860001564025879",
+	"sureAlign": "31-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "109",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "'' Clearly the market was looking for an outright takeover of one of the companies , '' said William Fiala , an analyst at Edward Jones Inc. in St. Louis . ''",
+	"score": "8.858745574951172",
+	"sureAlign": "31-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "110",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "But also , Wall Street does n't like uncertainty , and right now the ag business is blanketed with uncertainty . ''",
+	"score": "8.849417686462402",
+	"sureAlign": "31-20",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "111",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Indeed , Monsanto 's agriculture division has been considered a liability depressing the company 's stock for months .",
+	"score": "8.935940742492676",
+	"sureAlign": "2-2 31-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "112",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "When the company talked merger , it was Searle , its pharmaceutical unit and creator of the blockbuster arthritis drug Celebrex , that garnered more interest .",
+	"score": "8.85836124420166",
+	"sureAlign": "31-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "113",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "'' Everyone today is looking at the albatross that is this agriculture division , '' said Sano Shimoda , an analyst at Bioscience Securities in Orinda , Calif. '' But I think they had to do a deal , and this was the only deal they could do . ''",
+	"score": "8.851064682006836",
+	"sureAlign": "31-48",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "114",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "It was Monsanto 's only option , stock analysts said yesterday , because no one wanted the agriculture unit , despite its best-selling herbicide , Roundup , and its pioneering development of bioengineered crops .",
+	"score": "9.009603500366211",
+	"sureAlign": "2-2 9-7 31-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "115",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The merger suggests a reversal for Monsanto , which less than five years ago embarked on an ambitious plan to transform itself from a stodgy chemical maker into a life sciences company that would use biotechnology to create a '' brave new world '' of sustainable agriculture .",
+	"score": "8.931212425231934",
+	"sureAlign": "2-6 31-47",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "116",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "To speed its drive , the company spent more than $ 8 billion in just under two years to acquire some of the world 's largest seed companies .",
+	"score": "8.859933853149414",
+	"sureAlign": "31-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "117",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Its plan was to use the new science of genomics to manipulate the genes of plants to create corn that can ward off pests because of an inbred pesticide and soybeans that could withstand chemical spraying to kill weeds .",
+	"score": "8.899269104003906",
+	"sureAlign": "7-6 31-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "118",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Nearly 70 million acres were planted with genetically engineered crops in 1999 , an indication of the company 's success in marketing to farmers .",
+	"score": "8.856739044189453",
+	"sureAlign": "31-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "119",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "But the very strategy that has propelled the biotechnology revolution on the farm continues to drag down a company that some in Europe have labeled a producer of '' Frankenstein Foods . ''",
+	"score": "8.859577178955078",
+	"sureAlign": "31-31",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "120",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Now that Monsanto and Pharmacia have agreed to merge , the time has come to decide what will happen to one of the world 's biggest agricultural chemical and seed companies -- a pioneer in the development of biotechnology .",
+	"score": "8.97182559967041",
+	"sureAlign": "2-2 19-4 31-39",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "121",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The executives who will lead the combined company say they will create an agricultural subsidiary and then sell about 20 percent of it in an initial public offering of stock sometime next year , a move that would generate cash to help the company reduce its nearly $ 6 billion in debt .",
+	"score": "8.848474502563477",
+	"sureAlign": "9-29 31-52",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "122",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The move , they said , would allow investors to choose between the drug and agriculture divisions .",
+	"score": "8.850428581237793",
+	"sureAlign": "31-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "123",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "In talking about the combination , though , executives have focused not on the agriculture unit but on the advantages of combining Pharmacia and Monsanto 's Searle unit , which together would have one of the industry 's biggest sales forces .",
+	"score": "8.909972190856934",
+	"sureAlign": "19-22 31-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "124",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The agriculture division remained , at least among some of Monsanto 's top executives , a possible sleeper , an out-of-favor business that was too important to dump but too much of a liability to keep in whole , analysts said .",
+	"score": "9.003399848937988",
+	"sureAlign": "1-9 2-10 31-41",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "125",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "'' They believe the valuation for the ag side is at the bottom , '' said James Wilbur , an analyst at Salomon Smith Barney . ''",
+	"score": "8.854361534118652",
+	"sureAlign": "31-25",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "126",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "A year from now it could be robust , so why not keep it ? ''",
+	"score": "8.787435531616211",
+	"sureAlign": "",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "127",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Because of how the merger will be accounted for , the combined company can not sell the entire unit immediately anyway .",
+	"score": "8.854183197021484",
+	"sureAlign": "31-21",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "128",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The Monsanto executives have consistently outlined the growth potential of plant biotechnology , with huge expected gains once the company broadens its pipeline and starts genetically altering crops to produce more nutritious foods .",
+	"score": "8.952001571655273",
+	"sureAlign": "2-1 31-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "129",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Having spent billions of dollars to develop genetically engineered crops , Monsanto has lobbied for worldwide approval , so that the company can sell to farmers everywhere and so that foreign markets will be receptive to the exported biotechnology crops of American farmers .",
+	"score": "8.926560401916504",
+	"sureAlign": "2-11 27-31 31-43",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "130",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "In Europe , though , Monsanto has suffered from a vicious backlash against genetically modified foods , and a movement against the products has begun to take hold this year among Americans as well .",
+	"score": "8.937195777893066",
+	"sureAlign": "2-5 31-34",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "131",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Monsanto executives say that the products have been proved safe and that once the storm clouds clear , Monsanto stands to gain the most because it is the world 's second largest seed company and the developer or licensee of more than 90 percent of the genetically modified crops now on the market .",
+	"score": "8.936365127563477",
+	"sureAlign": "2-0 31-53",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "132",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "In 1996 , just 2.8 million acres worldwide were planted with biotechnology seeds ; in 1999 , an estimated 70 million acres were planted .",
+	"score": "8.856739044189453",
+	"sureAlign": "31-24",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "133",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "And Roundup , the company 's best-selling herbicide , has been a cash cow for nearly 20 years , racking up more than $ 2 billion in sales in 1998 , and effectively crippling its competitors in the agricultural chemicals market because of its compatability with many biotech seeds .",
+	"score": "8.868890762329102",
+	"sureAlign": "27-40 31-49",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "134",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Some investors have decided not to stick around .",
+	"score": "8.837968826293945",
+	"sureAlign": "31-8",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "135",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Yesterday , shares of Monsanto dropped $ 5.125 , to $ 36.625 .",
+	"score": "10.03510856628418",
+	"sureAlign": "0-2 1-3 2-4 3-5 4-6 5-7 12-9 13-10 14-11 20-5 21-6 22-7 23-9 24-10 31-12",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "136",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The stock is down 22.9 percent in the last year ; and shares of Pharmacia fell $ 3.125 , to $ 47.125 .",
+	"score": "9.817203521728516",
+	"sureAlign": "0-12 9-1 12-19 13-20 14-17 18-13 19-14 20-15 21-16 22-17 23-19 24-20 25-21 31-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "137",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The problem might be , as Mr. Wilbur outlined , simply a question of uncertainty .",
+	"score": "8.848320007324219",
+	"sureAlign": "31-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "138",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "After moving swiftly to create , market and license its biotechnology products , and acquire some of the world 's largest seed companies , Monsanto has stumbled repeatedly in its effort to integrate its units and convince the public of the feasibility of what it has called the new agriculture .",
+	"score": "8.854076385498047",
+	"sureAlign": "2-24 31-50",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "139",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Monsanto and other big seed companies have been embroiled in a series of lawsuits over patent infringement .",
+	"score": "8.937675476074219",
+	"sureAlign": "2-0 31-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "140",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Farmers have complained about Monsanto 's aggressive tactics , which included hiring detectives , to enforce its contracts .",
+	"score": "8.915237426757812",
+	"sureAlign": "2-4 31-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "141",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "There have also been growing concerns about the safety of genetically modified seeds , which have been approved for use in the United States , but are still little understood by the public .",
+	"score": "8.860733985900879",
+	"sureAlign": "31-33",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "142",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Monsanto is also facing legal challenges because of its dominance in the seed market .",
+	"score": "8.947954177856445",
+	"sureAlign": "2-0 27-13 31-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "143",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Just last week , a group of leading antitrust lawyers filed a class-action lawsuit against Monsanto , saying the company rushed its biotechnology products to market without proper testing .",
+	"score": "8.908064842224121",
+	"sureAlign": "2-15 27-25 31-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "144",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The suit , backed by some environmental advocates , also charged the company with masterminding an international cartel that sought to fix prices in the corn and soybean markets .",
+	"score": "8.872654914855957",
+	"sureAlign": "27-28 31-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "145",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Monsanto executives said the lawsuit has no merit and called it , in effect , political grandstanding .",
+	"score": "8.937675476074219",
+	"sureAlign": "2-0 31-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "146",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "The class-action lawyers said they were preparing a separate suit in the cotton market .",
+	"score": "8.861401557922363",
+	"sureAlign": "27-13 31-14",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "147",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "And the Justice Department said it had broadened an investigation into Monsanto 's proposed acquisition of Delta and Pine Land , the world 's biggest cotton seed company , to include the cotton seed market .",
+	"score": "8.909381866455078",
+	"sureAlign": "2-11 27-34 31-35",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "148",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Among other things , Monsanto said the Justice Department had asked the company for information about its licensing agreements -- an issue at the heart of the class-action lawsuit .",
+	"score": "8.939990043640137",
+	"sureAlign": "2-4 31-29",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "149",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Yesterday , Monsanto withdrew its filing for Justice Department approval for approval of the Delta and Pine Land acquisition , ending a $ 1.9 billion deal proposed 18 months ago .",
+	"score": "8.954790115356445",
+	"sureAlign": "2-2 31-30",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "150",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Top executives at Monsanto have likened the new world of agriculture to the technology revolution under way in Silicon Valley , and the seed to a personal computer .",
+	"score": "8.988117218017578",
+	"sureAlign": "2-3 7-7 31-28",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "151",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Monsanto is Microsoft or Intel , writing the software and driving the information-laden seed into the market .",
+	"score": "8.950376510620117",
+	"sureAlign": "2-0 27-16 31-17",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "152",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Robert B. Shapiro , the chief executive at Monsanto , who will become chairman of the combined company , says the company is committed to biotechnology .",
+	"score": "8.904794692993164",
+	"sureAlign": "2-8 31-26",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "153",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Eventually , he says , the public and the stock market will come to see the value of biotechnology .",
+	"score": "8.881967544555664",
+	"sureAlign": "9-9 31-19",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "154",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "'' Underneath all the media noise is what has happened : in biotechnology we 've had the most successful product launch in the history of agriculture , '' Mr. Shapiro said in an interview last week . ''",
+	"score": "8.857277870178223",
+	"sureAlign": "31-36",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "155",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "What we are doing and what people think of us will eventually come into alignment . ''",
+	"score": "8.843417167663574",
+	"sureAlign": "31-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "156",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "In the meantime , stock analysts see more public pressure and shareholder doubts about the agriculture division and Mr. Shapiro 's leadership .",
+	"score": "8.906670570373535",
+	"sureAlign": "9-4 31-22",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "157",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "Biotechnology executives say it is the price Monsanto has to pay for being a pioneer .",
+	"score": "8.867711067199707",
+	"sureAlign": "2-7 31-15",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "158",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "'' He kind of put himself in this position , '' said Mr. Wilbur of Salomon Smith Barney . ''",
+	"score": "8.847187995910645",
+	"sureAlign": "31-18",
+	"possibleAlign": ""
+	}
+	,
+	{
+	"name": "159",
+	"id": "",
+	"source": "shares of Monsanto dropped $ 5.125 on New York Stock Exchange , to $ 36.625 , while those of Pharmacia declined $ 3.125 to $ 47.125 ( Market Place column ) .",
+	"target": "He was really aggressive on the ag side and kind of bet the farm on this , and so far it has n't panned out . ''",
+	"score": "8.854361534118652",
+	"sureAlign": "31-25",
+	"possibleAlign": ""
+	}
+]

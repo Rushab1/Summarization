@@ -101,8 +101,8 @@ def main(dataset, domain, type_s="importance", relabeling=True, classifier="logi
 
     model = ltrain(x, y, relabeling = relabeling, classifier = classifier)
 
-    save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, " model.pkl")
-    pickle.dump(svc, open(save_file, "wb"))
+    save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl")
+    pickle.dump(model, open(save_file, "wb"))
 
 def test(X, y, model):
     x = deepcopy(X)
@@ -123,8 +123,6 @@ def test(X, y, model):
     if -1 in y:
         y = (np.array(y)+1)/2
 
-    print(list(y_pred[:10]))
-    print(list(y[:10]))
     len_pos = len([i for i in y if i == 1])
     len_neg = len([i for i in y if i == 0])
     print("total samples: " + str(len(x))  )
@@ -169,14 +167,16 @@ if __name__ == "__main__":
     type_s = opts.type_s
     relabeling = opts.relabeling
 
+    DOMAINS = ["Business"]
     for domain in DOMAINS:
         print("\n______________________________\n{} - training".format(dataset, domain))
-        main(dataset, domain, type_s=type_s, relabeling=relabeling, classifier="logistic" )
+        # main(dataset, domain, type_s=type_s, relabeling=relabeling, classifier="logistic" )
 
         print("Done")
         print("\n______________________________\n{} - testing".format(dataset, domain))
-        a = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl"), "rb"))
+        a = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "test_data.pkl"), "rb"))
+        model = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl"), "rb"))
         X_test = a['embedding']
         Y_test = a['label']
 
-        test(X_test, Y_test, pickle.load(open("./modelfiles/" + type_s + "/model.pkl")))
+        test(X_test, Y_test, model)
