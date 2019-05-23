@@ -20,6 +20,7 @@ LOWER_THRESHOLD = -1
 #
 
 TRAIN_TEST_SPLIT = 0.6
+MAX_ARTICLES = 40000 # maximum number of articles in each class (pos/neg). -1 for no limit
 
 def create_training_data(domain_save_dir, shard_dir, subdir, domain, JobQueue):
     load_file = os.path.join(shard_dir, subdir, "Sentence_pairs_scores.pkl" )
@@ -57,12 +58,17 @@ def create_training_data(domain_save_dir, shard_dir, subdir, domain, JobQueue):
     embedding = np.array(embedding)
     cos = np.array(cos)
 
+    if MAX_ARTICLES != -1:
+        rand = np.random.permutation(len(label))[: MAX_ARTICLES]
+        label = label[rand]
+        embedding = embedding[rand]
+        cos = cos[rand]
+
     dct = {
             "embedding": embedding,
             "label": label,
             "cos": cos,
             }
-    print(len(embedding) , len(cos), len(label))
     JobQueue.put(dct)
 
 def merge_data(JobQueue, type_s, save_dir):
@@ -84,7 +90,9 @@ def merge_data(JobQueue, type_s, save_dir):
 
 def train_test_split(dct, save_dir, type_s):
     print("Splitting Data")
-    global NUM_TEST_SAMPLES_pos, NUM_TEST_SAMPLES_neg, NUM_TRAIN_SAMPLES_pos, NUM_TRAIN_SAMPLES_neg
+    global NUM_TEST_SAMPLES_pos, NUM_TEST_SAMPLES_neg
+    global NUM_TRAIN_SAMPLES_pos, NUM_TRAIN_SAMPLES_neg
+    global MAX_ARTICLES
 
     label = np.array(dct['label'])
     embedding = np.array(dct['embedding'])
@@ -105,6 +113,12 @@ def train_test_split(dct, save_dir, type_s):
     NUM_TRAIN_SAMPLES_neg = int(TRAIN_TEST_SPLIT * n)
     NUM_TEST_SAMPLES_pos = int((1-TRAIN_TEST_SPLIT) * n)
     NUM_TEST_SAMPLES_neg = int((1-TRAIN_TEST_SPLIT) * n)
+
+    if MAX_ARTICLES != -1:
+        NUM_TRAIN_SAMPLES_pos = min(NUM_TRAIN_SAMPLES_pos, MAX_ARTICLES)
+        NUM_TRAIN_SAMPLES_neg = min(NUM_TRAIN_SAMPLES_neg, MAX_ARTICLES)
+        NUM_TEST_SAMPLES_pos = min(NUM_TEST_SAMPLES_pos, MAX_ARTICLES)
+        NUM_TEST_SAMPLES_neg = min(NUM_TEST_SAMPLES_neg, MAX_ARTICLES)
 
     train = {
             "embedding": [],

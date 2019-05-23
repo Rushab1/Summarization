@@ -7,8 +7,10 @@ from sklearn.svm import SVC
 from sklearn.svm import OneClassSVM as OCS
 from copy import deepcopy
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+import multiprocessing as mp
 
-DOMAINS = ["Business", "Sports", "Science", "USIntlRelations"]
+DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
+
 def normalize(x):
     x = np.array(x)
     x = x.transpose()
@@ -91,19 +93,6 @@ def ltrain(x, y, relabeling = True, classifier = "logistic", kernel = "linear"):
     svc.fit(xnew, ynew, weights)
     return svc, mu, sig
 
-def main(dataset, domain, type_s="importance", relabeling=True, classifier="logistic"): #classifier arg Used only if relabeling is False
-    load_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "train_data.pkl")
-
-    print(load_file)
-    dct = pickle.load(open(load_file, "rb"))
-    x = dct['embedding']
-    y = dct['label']
-
-    model = ltrain(x, y, relabeling = relabeling, classifier = classifier)
-
-    save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl")
-    pickle.dump(model, open(save_file, "wb"))
-
 def test(X, y, model):
     x = deepcopy(X)
     x = np.array(x)
@@ -129,6 +118,11 @@ def test(X, y, model):
     print("total samples: " + str(len(x))  )
     print("total pos samples expected: " + str(len_pos)  )
     print("total neg samples expected: " + str(len_neg)  )
+
+    #convert any -1 in y_pred to 0
+    for i in range(0, len(y_pred)):
+        if y_pred[i] == -1:
+            y_pred[i] = 0
 
     print("POSITIVE CLASS")
     pr = precision_score(y, y_pred)
@@ -156,6 +150,47 @@ def test(X, y, model):
     print("accuracy", acc)
     return y_pred
 
+def main(dataset, domain, type_s="importance", relabeling=True, classifier="logistic"): #classifier arg Used only if relabeling is False
+    print("\n______________________________\n{} - training {}".format(dataset, domain))
+
+    #loading Data
+    load_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "train_data.pkl")
+
+    print(load_file)
+    dct = pickle.load(open(load_file, "rb"))
+
+    x = dct['embedding']
+    y = dct['label']
+
+    rand = np.random.permutation(len(x))
+    x = np.array(x)[rand]
+    y = np.array(y)[rand]
+
+
+    #Training Model
+    if type_s == "importance":
+        model = ltrain(x, y, relabeling = relabeling, classifier = classifier)
+    else:
+        print("Setting relabeling to False ")
+        model = ltrain(x, y, relabeling = False, classifier = classifier)
+
+    save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl")
+
+    pickle.dump(model, open(save_file, "wb"))
+
+    print("Done\n______________________________\n{} - testing {}".format(dataset, domain))
+
+    #Testing model
+    a = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "test_data.pkl"), "rb"))
+    X_test = a['embedding']
+    Y_test = a['label']
+
+    rand = np.random.permutation(len(X_test))
+    X_test = np.array(X_test)[rand]
+    Y_test = np.array(Y_test)[rand]
+
+    test(X_test, Y_test, model)
+
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("-dataset", type=str, default="nyt")
@@ -167,16 +202,16 @@ if __name__ == "__main__":
     type_s = opts.type_s
     relabeling = opts.relabeling
 
-    DOMAINS = ["Business"]
+    #Running on domains in parallel - Saves time
+    pool = mp.Pool()
+    jobs = []
+
     for domain in DOMAINS:
-        print("\n______________________________\n{} - training".format(dataset, domain))
-        # main(dataset, domain, type_s=type_s, relabeling=relabeling, classifier="logistic" )
+        job = pool.apply_async(main, (dataset, domain, type_s, relabeling, "logistic" ))
+        jobs.append(job)
 
-        print("Done")
-        print("\n______________________________\n{} - testing".format(dataset, domain))
-        a = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "test_data.pkl"), "rb"))
-        model = pickle.load(open(os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "model.pkl"), "rb"))
-        X_test = a['embedding']
-        Y_test = a['label']
+    for job in jobs:
+        job.get()
 
-        test(X_test, Y_test, model)
+    pool.close()
+    pool.join()
