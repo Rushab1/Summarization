@@ -18,6 +18,7 @@ from onmt.translate.random_sampling import RandomSampling
 from onmt.utils.misc import tile, set_random_seed
 from onmt.modules.copy_generator import collapse_copy_scores
 
+from tqdm import tqdm
 
 def build_translator(opt, report_score=True, logger=None, out_file=None):
     if out_file is None:
@@ -325,7 +326,7 @@ class Translator(object):
 
         start_time = time.time()
 
-        for batch in data_iter:
+        for batch in tqdm(data_iter):
             batch_data = self.translate_batch(
                 batch, data.src_vocabs, attn_debug
             )

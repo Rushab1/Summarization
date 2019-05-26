@@ -1,9 +1,9 @@
 ###############################################################
 Summarizers
 ###############################################################
-Create a directory named Summarizers. Clone OpenNMT-py and Chen&Bansal summarizer repositories
-Create a directory named modelfiles. Create 2 sub-directories named ./modelfiles/OpenNMT-py/ and ./modelfiles/chen_and_bansal/
-Download the Transformer summarizer sum_transformer_model_acc_57.25_ppl_9.22_e16.pt in the OpenNMT directory and extract pretrained models from chena_and_bansal into the chen_and_bansal directory (link on the chen_and_bansal repo)
+- Create a directory named Summarizers. Clone OpenNMT-py and Chen&Bansal summarizer repositories
+- Create a directory named modelfiles. Create 2 sub-directories named ./modelfiles/OpenNMT-py/ and ./modelfiles/chen_and_bansal/
+- Download the Transformer summarizer sum_transformer_model_acc_57.25_ppl_9.22_e16.pt in the OpenNMT directory and extract pretrained models from chena_and_bansal into the chen_and_bansal directory (link on the chen_and_bansal repo)
 
 ###############################################################
 Packages
@@ -13,8 +13,18 @@ tensorflow, tensorflow_hub, tensorflow-gpu, pytorch
 Create a folder called packages - install pyrouge, stanford coreNLP 
 
 Installing pyrouge:
-Follow directions here: https://poojithansl7.wordpress.com/2018/08/04/setting-up-rouge/
-For running pyrouge tests: cd pyrouge/pyrouge/ && python test.py
-Try not to run sudo and using a virtual env
+- Follow directions here: https://poojithansl7.wordpress.com/2018/08/04/setting-up-rouge/
+- For running pyrouge tests: cd pyrouge/pyrouge/ && python test.py
+- Try not to run sudo and using a virtual env
 
 
+###############################################################
+#Preprocessing
+###############################################################
+- The dataset must be stored in a directory in Data/Datasets/<Dataset_name>
+- Preferably must have 4 subdirectories Business, Science, Sports, USIntlRelations (Like NYT corpus) - if not just set the DOMAINS variable to ["All"], you might have to make a few more changes 
+- Each of the 4 domains must have json files (one file per article) - containing pairs of articles from article and summary (m article sentences X n summary sentences)
+- I'll write up a Preprocessing module later
+- look at the file dataset_example_file.json
+- The fields source (Summary) and target(Article) are necessary- It's opposite of what it should be but somebody else made this.
+- Other fields are irrelevant for this task, though you may include more/discard them.
