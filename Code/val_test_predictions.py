@@ -10,6 +10,7 @@ from extract_documents import *
 from gensim.summarization.summarizer import summarize
 from tqdm import tqdm
 import subprocess
+from multiprocessing_utils import *
 
 N_JOBS = 15
 THRESHOLD = 0.6
@@ -32,7 +33,6 @@ def get_sentences(dataset, file_list):
         f = open(fname)
         dct = clean_and_process_file(dataset, fname)
         article = dct['full_text']
-        # abstract = dct['abstract']
         sentences.extend(article)
     return sentences
 
@@ -55,30 +55,6 @@ def clean_files(dataset, file_list, threshold, JobQueue):
     embeddings_dct = pickle.load(open(tmp_save_file, "rb"))
     JobQueue.put(embeddings_dct)
 
-def sentence_predictions(dataset, file_list, model, embeddings_dct, save_file):
-    sentences = get_sentences(dataset, file_list)
-    #create np array from embeddings dct
-    embeddings = []
-    for sent in sentences:
-        embeddings.append(embeddings_dct[sent])
-
-    embeddings = np.array(embeddings)
-
-    mu = model[1]
-    sig = model[2]
-    model = model[0]
-
-    x = deepcopy(embeddings)
-    x = normalize(x, mu, sig)
-    prob = model.predict_proba(x)
-    sentences_predict_proba = {}
-
-    for i in range(0, len(sentences)):
-        sent = sentences[i]
-        sentences_predict_proba[sent] = prob[i]
-
-    pickle.dump(sentences_predict_proba, open(save_file, "wb"))
-
 def embeddings_writer(save_file, JobQueue):
     dct = {}
     while True:
@@ -90,6 +66,74 @@ def embeddings_writer(save_file, JobQueue):
         for sent in embeddings_dct:
             dct[sent] = embeddings_dct[sent]
     pickle.dump(dct, open(save_file, "wb"))
+
+
+#multiprocessing functions
+def processor(file_list, dataset,  JobQueue):
+    sentences = get_sentences(dataset, file_list)
+    JobQueue.put(sentences)
+
+def tmpwriter(JobQueue):
+    sentences = []
+    while True:
+        res = JobQueue.get()
+        if res == "kill":
+            break
+        sentences.extend(res)
+    return sentences
+
+#model =(model, mu, sig)
+def predictions_processor(sentences, model, embeddings_dct, JobQueue):
+    embeddings = []
+
+    print("Inside predictor")
+    for sent in tqdm(sentences):
+        try:
+            embeddings.append(embeddings_dct[sent])
+        except:
+            print("No embedding found for <" + sent + "> Setting probability to 1.0")
+            embeddings.append(np.random.rand(512))
+
+    mu = model[1]
+    sig = model[2]
+    model = model[0]
+    x = normalize(embeddings, mu, sig)
+
+    prob = []
+    h = 100
+    for i in tqdm(range(0, len(sentences), h)):
+        prob.extend(model.predict_proba(x[i:i+h]))
+
+    prob_dct = {}
+    for i in range(0, len(sentences)):
+        sent = sentences[i]
+        prob_dct[sent] = prob[i]
+
+    JobQueue.put(prob_dct)
+
+def predictions_writer(save_file, JobQueue):
+    print("inside predictor writer")
+    prob_dct = {}
+    while True:
+        res = JobQueue.get()
+        if res == "kill":
+            break
+
+        for sent in res:
+            prob_dct[sent] = res[sent]
+
+    pickle.dump(prob_dct, open(save_file, "wb"))
+    return prob_dct
+
+def convert_dct_to_mp_sharing(dct, manager, delete_orig = True):
+    manager_dct = manager.dict()
+    keys = list(dct.keys())
+
+    for key in tqdm(keys):
+        manager_dct[key] = dct[key]
+        if delete_orig:
+            del dct[key]
+    return manager_dct
 
 def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = False, force_new_predictions = False):
     if dataset == "nyt":
@@ -121,34 +165,44 @@ def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = 
         pool.close()
         pool.join()
 
-    print("Loading Sentence Embeddings - This while takes some time")
-    embeddings_dct = pickle.load(open(save_file, "rb"))
-    print("Done")
+    manager = mp.Manager()
     pool = mp.Pool()
     jobs = []
+    embeddings_file = save_file
+    embeddings_dct = None
 
+    if embeddings_dct == None:
+        print("Loading Sentence Embeddings - This while takes some time")
+        embeddings_dct = pickle.load(open(embeddings_file, "rb"))
+        print("Done")
+        print("Converting embeddings_dct to Manager dict and deleting embeddings_dct")
+        embeddings_dct = convert_dct_to_mp_sharing(embeddings_dct, manager, delete_orig=True)
+        print("Done")
+
+    DOMAINS = ["Business"]
     for domain in DOMAINS:
         save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "predictions.pkl")
 
+        test_file = os.path.join("../Data/Processed_Data/", dataset, domain, "test_file_list.txt")
+        file_list = open(test_file).read().strip().split("\n")
+        val_file = os.path.join("../Data/Processed_Data/", dataset, domain, "val_file_list.txt")
+        file_list.extend(open(val_file).read().strip().split("\n"))
+
+        # sentences = get_sentences(dataset, file_list)
+        print("Getting sentences")
+        sentences = multiprocessing_func(processor, file_list, 15, [dataset], tmpwriter, [])
+        print("Done")
+
         if force_new_predictions or not os.path.exists(save_file):
-            file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "test_file_list.txt")
-            file_list = open(file_list_file).read().strip().split("\n")
-
-            file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "val_file_list.txt")
-            file_list.extend( open(file_list_file).read().strip().split("\n") )
-
-
+            print("Getting model for " + dataset + " - " + domain)
             modelfile = os.path.join("../Data/Processed_Data", dataset, domain, type_s, "model.pkl")
             model = pickle.load(open(modelfile, "rb"))
-            job = pool.apply_async(sentence_predictions, (dataset, file_list, model, embeddings_dct, save_file))
-            jobs.append(job)
-
-    for job in jobs:
-        job.get()
-    pool.close()
-    pool.join()
-
-
+            print("Done")
+            # sentence_predictions(sentences, embeddings_dct, model, save_file)
+            print("Predicting ...")
+            # sentences = sentences[:1000]
+            sentence_predictions_dct = multiprocessing_func(predictions_processor, sentences, 15, (model, embeddings_dct), predictions_writer, [save_file])
+            print("Done")
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()

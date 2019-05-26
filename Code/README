@@ -1,14 +1,8 @@
-python ./content_dense_classifier.py -news_type Sports -create_embeddings 1 -create_test_data 1
-
-python ./sent_similarity.py -news_type Sports
-
-python article_cosine_dist.py  = get an idea for upper and lower thresholds from here
-
-python ./create_training_data.py -type_s by_sentence
-
-python train.py -type_s by_sentence -news_type Sports -relabeling 1
-
-python ./summarize.py -type_s by_sentence -news_type Sports
-
-cd ./Summarizer/
-python 
+python sent_similarity.py
+/*python article_cosine_dist.py  = get an idea for upper and lower thresholds from here*/
+python create_training_data.py 
+python train.py 
+python ./val_test_predictions.py
+python create_cleaned_files.py
+python validation.py
+python test.py

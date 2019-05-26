@@ -28,17 +28,12 @@ def clean_and_process_nyt_file( fname):
 
     #Clean abstract
     abstract = abstract.strip()
-    tmp = abstract.split(';')
+    abstract = abstract.split(';')
 
-    tmp1 = []
-    while len(tmp) > 1 and len(tmp[-1]) <= 20:
-        tmp1.append(tmp[-1])
-        del tmp[-1]
-        if len(tmp) == 0:
-            print("__________________________")
-            print(f_orig_name)
-            print(tmp1)
-            print("__________________________")
+    tmp = []
+    for para in abstract:
+        tmp.extend(nltk.sent_tokenize(para))
+    abstract = tmp
 
 
 
