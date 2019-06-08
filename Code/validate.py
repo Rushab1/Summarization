@@ -75,10 +75,16 @@ def validate_domain(dataset, domain, type_s, summarizer):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("-dataset", type=str, default="nyt")
+    args.add_argument("-dataset", type=str, default=None)
     args.add_argument("-type_s", type=str, default = "importance")
+    args.add_argument("-summarizer", type=str, default = "opennmt")
     opts = args.parse_args()
 
-    # create_validation_files(opts.dataset, opts.type_s)
-    validate_domain("nyt", "Business", "importance", "opennmt")
+
+    if opts.dataset == "cnn":
+        DOMAINS = ['All']
+
+    create_validation_files(opts.dataset, opts.type_s)
+    for domain in DOMAINS:
+        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 

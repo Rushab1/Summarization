@@ -26,6 +26,9 @@ def get_file_lists_domain(data_dir, domain):
         for filename in files:
             file_list.append(os.path.join(root, filename))
 
+    print("_____________________________")
+    print(len(file_list), data_dir)
+    print("_____________________________")
     random.shuffle(file_list)
 
     num_files = len(file_list)
@@ -335,7 +338,7 @@ def score_sentences(dataset, parallelism):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("--dataset", type=str, default="nyt")
+    args.add_argument("--dataset", type=str, default=None)
     args.add_argument("--test_split", type=float, default=0.35)
     args.add_argument("--val_split", type=float, default=0.05)
     args.add_argument("--cpu", action = "store_true")
@@ -349,7 +352,14 @@ if __name__ == "__main__":
     device = 'cpu' if opts.cpu else 'gpu'
 
     if opts.dataset == "nyt":
-        # get_file_list("../Data/Datasets/nyt/pair_sent_matched/", "nyt")
-        # get_sentences("nyt", opts.shard_size)
-        # get_sentence_embeddings("nyt", opts.parallelism , device)
+        get_file_list("../Data/Datasets/nyt/pair_sent_matched/", "nyt")
+        get_sentences("nyt", opts.shard_size)
+        get_sentence_embeddings("nyt", opts.parallelism , device)
         score_sentences("nyt", opts.parallelism)
+
+    if opts.dataset == "cnn":
+        DOMAINS = ["All"]
+        get_file_list("../Data/Datasets/cnn/pair_sent_matched/", "cnn")
+        get_sentences("cnn", opts.shard_size)
+        get_sentence_embeddings("cnn", opts.parallelism , device)
+        score_sentences("cnn", opts.parallelism)

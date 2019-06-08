@@ -126,7 +126,7 @@ def train_test_split(dct, save_dir, type_s):
             "cos": []
             }
 
-    print(len(embedding), NUM_TRAIN_SAMPLES_pos, rpos)
+    print(len(embedding), NUM_TRAIN_SAMPLES_pos, rpos, npos)
     train['embedding'].extend(embedding[rpos][:NUM_TRAIN_SAMPLES_pos])
     train['label'].extend(label[rpos][:NUM_TRAIN_SAMPLES_pos])
     train['cos'].extend(cos[rpos][:NUM_TRAIN_SAMPLES_pos])
@@ -192,7 +192,6 @@ def create_train_test_data(dataset, type_s, domain = "All"):
         if not subdir.startswith("train"):
             continue
 
-        print(subdir)
         job = pool.apply_async(create_training_data, (save_dir, shard_dir, subdir, domain, JobQueue))
         jobs.append(job)
 
@@ -211,5 +210,8 @@ if __name__ == "__main__":
     opts = args.parse_args()
 
     create_train_test_data(opts.dataset, opts.type_s)
+
+    if opts.dataset == "cnn":
+        DOMAINS = []
     for domain in DOMAINS:
         create_train_test_data(opts.dataset, opts.type_s, domain)

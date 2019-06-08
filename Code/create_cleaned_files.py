@@ -78,6 +78,9 @@ def create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, thr
     orig.close()
     cleaned.close()
     abstracts.close()
+    orig = open(os.path.join(save_dir, "orig.txt")).read().split()
+    cleaned = open(os.path.join(save_dir, "cleaned.txt")).read().split()
+    print("Reduction = " + str( 100.0 * len(cleaned) / len(orig)))
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()

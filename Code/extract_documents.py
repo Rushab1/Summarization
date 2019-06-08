@@ -3,10 +3,30 @@ import sys
 import pickle
 import re
 import nltk
+import json
 
 def clean_and_process_file(dataset, fname):
     if dataset == "nyt":
         return clean_and_process_nyt_file(fname)
+    elif dataset == "cnn":
+        return clean_and_process_cnn_file(fname)
+
+def clean_and_process_cnn_file(fname):
+    dir_orig = "../Data/Datasets/cnn/json_dir/All"
+
+    fpath = os.path.join(dir_orig, fname.split("/")[-1])
+    story = json.load(open(fpath))
+
+    #already tokenized by nltk sent_tokenize during preprocessings
+    full_text = story['article'].split("\n")
+    abstract = story['abstract'].split("\n")
+
+    return_dct = {
+            "abstract": abstract,
+            "full_text": full_text
+            }
+    return return_dct
+
 
 def clean_and_process_nyt_file( fname):
     dir_orig = "../Data/Datasets/nyt/orig_dataset/"

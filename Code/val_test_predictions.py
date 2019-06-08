@@ -13,7 +13,6 @@ import subprocess
 from multiprocessing_utils import *
 
 N_JOBS = 15
-THRESHOLD = 0.6
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
 
@@ -36,7 +35,7 @@ def get_sentences(dataset, file_list):
         sentences.extend(article)
     return sentences
 
-def clean_files(dataset, file_list, threshold, JobQueue):
+def clean_files(dataset, file_list, JobQueue):
     np.random.seed()
     sentences_predict_proba = {}
 
@@ -135,10 +134,9 @@ def convert_dct_to_mp_sharing(dct, manager, delete_orig = True):
             del dct[key]
     return manager_dct
 
-def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = False, force_new_predictions = False):
-    if dataset == "nyt":
-        file_list = open("../Data/Processed_Data/nyt/All/test_file_list.txt").read().strip().split("\n")
-        file_list.extend(open("../Data/Processed_Data/nyt/All/val_file_list.txt").read().strip().split("\n"))
+def main(dataset, type_s, parallelism = 4, force_create_embeddings = False, force_new_predictions = False):
+    file_list = open(os.path.join("../Data/Processed_Data/", dataset, "All/test_file_list.txt")).read().strip().split("\n")
+    file_list.extend(open(os.path.join("../Data/Processed_Data/", dataset, "All/val_file_list.txt")).read().strip().split("\n"))
 
     save_file = os.path.join("../Data/Processed_Data", dataset,  "pkl_files", "test_val_embeddings.pkl")
 
@@ -152,9 +150,8 @@ def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = 
         jobs = []
         writer = pool.apply_async(embeddings_writer, (save_file, JobQueue, ))
 
-        dataset = "nyt"
         for i in range(0, n, h):
-            job = pool.apply_async(clean_files, (dataset, file_list[i:i+h], threshold, JobQueue))
+            job = pool.apply_async(clean_files, (dataset, file_list[i:i+h], JobQueue))
             jobs.append(job)
 
         for job in jobs:
@@ -179,7 +176,6 @@ def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = 
         embeddings_dct = convert_dct_to_mp_sharing(embeddings_dct, manager, delete_orig=True)
         print("Done")
 
-    DOMAINS = ["Business"]
     for domain in DOMAINS:
         save_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "predictions.pkl")
 
@@ -188,8 +184,8 @@ def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = 
         val_file = os.path.join("../Data/Processed_Data/", dataset, domain, "val_file_list.txt")
         file_list.extend(open(val_file).read().strip().split("\n"))
 
-        # sentences = get_sentences(dataset, file_list)
-        print("Getting sentences")
+        ################ sentences = get_sentences(dataset, file_list)
+        print("Getting sentences: " + str(len(file_list)) + " files")
         sentences = multiprocessing_func(processor, file_list, 15, [dataset], tmpwriter, [])
         print("Done")
 
@@ -200,19 +196,19 @@ def main(dataset, type_s, threshold, parallelism = 4, force_create_embeddings = 
             print("Done")
             # sentence_predictions(sentences, embeddings_dct, model, save_file)
             print("Predicting ...")
-            # sentences = sentences[:1000]
             sentence_predictions_dct = multiprocessing_func(predictions_processor, sentences, 15, (model, embeddings_dct), predictions_writer, [save_file])
             print("Done")
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("-dataset", type=str, default="nyt")
+    args.add_argument("-dataset", type=str, default=None)
     args.add_argument("-type_s", type=str, default="importance")
-    args.add_argument("-threshold", type=float, default=0.6)
-    args.add_argument("-split_type", type=str , default="test")
     args.add_argument("-parallelism", type=int , default=20)
     args.add_argument("--force_create_embeddings", action="store_true")
     args.add_argument("--force_new_predictions", action="store_true")
-
     opts = args.parse_args()
-    main(opts.dataset, opts.type_s, opts.threshold, opts.parallelism, opts.force_create_embeddings, opts.force_new_predictions)
+
+    if opts.dataset == "cnn":
+        DOMAINS = ["All"]
+    opts = args.parse_args()
+    main(opts.dataset, opts.type_s, opts.parallelism, opts.force_create_embeddings, opts.force_new_predictions)
