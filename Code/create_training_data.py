@@ -126,7 +126,6 @@ def train_test_split(dct, save_dir, type_s):
             "cos": []
             }
 
-    print(len(embedding), NUM_TRAIN_SAMPLES_pos, rpos, npos)
     train['embedding'].extend(embedding[rpos][:NUM_TRAIN_SAMPLES_pos])
     train['label'].extend(label[rpos][:NUM_TRAIN_SAMPLES_pos])
     train['cos'].extend(cos[rpos][:NUM_TRAIN_SAMPLES_pos])
@@ -213,5 +212,9 @@ if __name__ == "__main__":
 
     if opts.dataset == "cnn":
         DOMAINS = []
+
+    if opts.dataset == "cnndm":
+        DOMAINS = []
+
     for domain in DOMAINS:
         create_train_test_data(opts.dataset, opts.type_s, domain)

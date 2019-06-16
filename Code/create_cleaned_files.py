@@ -103,10 +103,11 @@ if __name__ == "__main__":
     domain = opts.domain
     type_s = opts.type_s
     save_dir = opts.save_dir
+    threshold = opts.threshold
 
     file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_file_list.txt")
     file_list = open(file_list_file).read().strip().split("\n")
 
     load_file = os.path.join("../Data/Processed_Data/", dataset, domain, type_s, "predictions.pkl")
     predictions_dct = pickle.load(open(load_file, "rb"))
-    create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir)
+    create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, threshold)

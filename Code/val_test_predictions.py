@@ -194,7 +194,6 @@ def main(dataset, type_s, parallelism = 4, force_create_embeddings = False, forc
             modelfile = os.path.join("../Data/Processed_Data", dataset, domain, type_s, "model.pkl")
             model = pickle.load(open(modelfile, "rb"))
             print("Done")
-            # sentence_predictions(sentences, embeddings_dct, model, save_file)
             print("Predicting ...")
             sentence_predictions_dct = multiprocessing_func(predictions_processor, sentences, 15, (model, embeddings_dct), predictions_writer, [save_file])
             print("Done")
@@ -209,6 +208,8 @@ if __name__ == "__main__":
     opts = args.parse_args()
 
     if opts.dataset == "cnn":
+        DOMAINS = ["All"]
+    if opts.dataset == "cnndm":
         DOMAINS = ["All"]
     opts = args.parse_args()
     main(opts.dataset, opts.type_s, opts.parallelism, opts.force_create_embeddings, opts.force_new_predictions)

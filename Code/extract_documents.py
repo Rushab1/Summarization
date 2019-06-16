@@ -8,17 +8,26 @@ import json
 def clean_and_process_file(dataset, fname):
     if dataset == "nyt":
         return clean_and_process_nyt_file(fname)
-    elif dataset == "cnn":
-        return clean_and_process_cnn_file(fname)
+    elif dataset == "cnn" or dataset == "cnndm":
+        return clean_and_process_cnn_file(fname, dataset)
 
-def clean_and_process_cnn_file(fname):
-    dir_orig = "../Data/Datasets/cnn/json_dir/All"
-
-    fpath = os.path.join(dir_orig, fname.split("/")[-1])
-    story = json.load(open(fpath))
+def clean_and_process_cnn_file(fname, dataset):
+    try:
+        dir_orig = os.path.join("../Data/Datasets", dataset, "json_dir/All")
+        fpath = os.path.join(dir_orig, fname.split("/")[-1])
+        story = json.load(open(fpath))
+    except:
+        pass
+        # fpath = fname
+        # story = json.load(open(fpath))
 
     #already tokenized by nltk sent_tokenize during preprocessings
-    full_text = story['article'].split("\n")
+    try:
+        full_text = story['article'].split("\n")
+    except:
+        print("\n\n\n_____________")
+        print(fpath);
+        print("\n\n\n_____________")
     abstract = story['abstract'].split("\n")
 
     return_dct = {

@@ -204,6 +204,8 @@ if __name__ == "__main__":
 
     if dataset == "cnn":
         DOMAINS = ["All"]
+    if dataset == "cnndm":
+        DOMAINS = ["All"]
     #Running on domains in parallel - Saves time
     pool = mp.Pool()
     jobs = []

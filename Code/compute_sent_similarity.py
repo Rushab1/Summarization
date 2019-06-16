@@ -12,13 +12,37 @@ from copy import deepcopy
 import multiprocessing as mp
 import argparse
 
+MAX_TRAIN_FILES_CNNDM = 100000
 PER_TEST_FILES = 35.0
 PER_VAL_FILES = 5.0
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations"]
 
+def get_file_lists_domain_cnndm(data_dir, domain):
+    print(data_dir)
+    test_file_list = [];
+    val_file_list = [];
+    file_list = [];
+
+    for root, subdir, files in os.walk(os.path.join(data_dir, domain)):
+        for filename in files:
+            if filename.startswith("train"):
+                file_list.append(os.path.join(root, filename))
+            if filename.startswith("test"):
+                test_file_list.append(os.path.join(root, filename))
+            if filename.startswith("val"):
+                val_file_list.append(os.path.join(root, filename))
+
+    try:
+        file_list = random.sample(file_list, MAX_TRAIN_FILES_CNNDM)
+    except:
+        pass
+    return file_list, val_file_list, test_file_list
+
 #Makes a file of all training and test file locations for every year given the news type
-#Saved at USE_Data_files/<Year>/train_file_list.txti and USE_Data_files/<year>/test_file_list.txt
 def get_file_lists_domain(data_dir, domain):
+    if "cnndm" in data_dir:
+        return get_file_lists_domain_cnndm(data_dir, domain)
+
     file_list = []
     test_file_list = []
 
@@ -26,9 +50,6 @@ def get_file_lists_domain(data_dir, domain):
         for filename in files:
             file_list.append(os.path.join(root, filename))
 
-    print("_____________________________")
-    print(len(file_list), data_dir)
-    print("_____________________________")
     random.shuffle(file_list)
 
     num_files = len(file_list)
@@ -157,7 +178,8 @@ def get_sentences(dataset, shard_size):
         os.system("rm -rf " + os.path.join(shard_dir, "*"))
 
     #get list of all dataset files
-    for prefix in ["train", "val", "test"]:
+    # for prefix in ["train", "val", "test"]:
+    for prefix in ["train"]:
         print("Creating shards for " + prefix + " files")
         fname = os.path.join(data_dir, "All/" + prefix + "_file_list.txt")
         file_list = open(fname).read().strip().split("\n")
@@ -224,6 +246,7 @@ def parallel_embedding_extractor(shard_dir, device):
                                                 sentences_file, save_file)
 
     os.system(cmd)
+    print("\n\nEMBEDDINGS Done: " + save_file)
 
 def get_sentence_embeddings(dataset, parallelism, device):
     shard_dir = os.path.join("../Data/Processed_Data", dataset, "pkl_files/shards")
@@ -363,3 +386,10 @@ if __name__ == "__main__":
         get_sentences("cnn", opts.shard_size)
         get_sentence_embeddings("cnn", opts.parallelism , device)
         score_sentences("cnn", opts.parallelism)
+
+    if opts.dataset == "cnndm":
+        DOMAINS = ["All"]
+        get_file_list("../Data/Datasets/cnndm/pair_sent_matched/", "cnndm")
+        get_sentences("cnndm", opts.shard_size)
+        get_sentence_embeddings("cnndm", opts.parallelism , device)
+        score_sentences("cnndm", opts.parallelism)

@@ -58,6 +58,33 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length):
     subprocess.call(cmd)
     os.chdir("../../Code")
 
+def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length):
+    output_dir = os.path.abspath(output_dir)
+
+    cmd = ['python', 'summarize.py',
+            '-articles_file', os.path.abspath(orig_file),
+            '-abstracts_file', os.path.join(output_file, 'abstracts.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_orig.txt'),
+            '-min_length', str(min_length),
+            '-batch_size', str(1500),
+            '-gpu', '0']
+
+    os.chdir("../Summarizers/fast_abs_rl/")
+    subprocess.call(cmd)
+    os.chdir("../../Code")
+
+    cmd = ['python', 'summarize.py',
+            '-articles_file', os.path.abspath(cleaned_file),
+            '-abstracts_file', os.path.join(output_file, 'abstracts.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_cleaned.txt'),
+            '-min_length', str(min_length),
+            '-batch_size', str(1500),
+            '-gpu', '0']
+
+    os.chdir("../Summarizers/fast_abs_rl/")
+    subprocess.call(cmd)
+    os.chdir("../../Code")
+
 def validate_domain(dataset, domain, type_s, summarizer):
     val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files", type_s)
     val_dir = os.path.abspath(val_dir)
@@ -71,7 +98,8 @@ def validate_domain(dataset, domain, type_s, summarizer):
         if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
             opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75)
 
-
+        if summarizer.lower() == "fastabs" or summarizer.lower() == "fast-abs":
+            opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75)
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
@@ -80,11 +108,12 @@ if __name__ == "__main__":
     args.add_argument("-summarizer", type=str, default = "opennmt")
     opts = args.parse_args()
 
-
     if opts.dataset == "cnn":
         DOMAINS = ['All']
 
-    create_validation_files(opts.dataset, opts.type_s)
+    if opts.dataset == "cnndm":
+        DOMAINS = ['All']
+
+    # create_validation_files(opts.dataset, opts.type_s)
     for domain in DOMAINS:
         validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
-
