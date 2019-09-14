@@ -69,7 +69,7 @@ def create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, thr
             sent = " <t> " + sent + " </t> "
             abstracts.write(sent)
 
-        if i != len(file_list):
+        if i != len(file_list) - 1:
             orig.write("\n")
             cleaned.write("\n")
             abstracts.write("\n")
