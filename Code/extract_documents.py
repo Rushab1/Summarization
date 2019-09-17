@@ -10,13 +10,16 @@ def clean_and_process_file(dataset, fname):
         return clean_and_process_nyt_file(fname)
     elif dataset == "cnn" or dataset == "cnndm":
         return clean_and_process_cnn_file(fname, dataset)
+    else:
+        return clean_and_process_cnn_file(fname, dataset)
 
 def clean_and_process_cnn_file(fname, dataset):
     try:
         dir_orig = os.path.join("../Data/Datasets", dataset, "json_dir/All")
         fpath = os.path.join(dir_orig, fname.split("/")[-1])
         story = json.load(open(fpath))
-    except:
+    except Exception as e:
+        print(e)
         pass
         # fpath = fname
         # story = json.load(open(fpath))

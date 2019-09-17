@@ -224,15 +224,12 @@ if __name__ == "__main__":
     args.add_argument("-summarizer", type=str, default = "opennmt")
     opts = args.parse_args()
 
-    if opts.dataset == "cnn":
-        DOMAINS = ['All']
-
-    if opts.dataset == "cnndm":
+    if opts.dataset in ["cnn", "cnndm", "gigaword"] :
         DOMAINS = ['All']
 
     DOMAINS = ['All']
-    # create_validation_files(opts.dataset, opts.type_s)
-    # for domain in DOMAINS:
-        # validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
+    create_validation_files(opts.dataset, opts.type_s)
+    for domain in DOMAINS:
+        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 
     calculate_rouge(opts.dataset, "All", "importance", opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")

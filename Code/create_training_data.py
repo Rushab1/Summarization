@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 import pickle
@@ -210,10 +211,7 @@ if __name__ == "__main__":
 
     create_train_test_data(opts.dataset, opts.type_s)
 
-    if opts.dataset == "cnn":
-        DOMAINS = []
-
-    if opts.dataset == "cnndm":
+    if opts.dataset in ["cnn", "cnndm", "gigaword"]:
         DOMAINS = []
 
     for domain in DOMAINS:

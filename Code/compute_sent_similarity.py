@@ -241,6 +241,7 @@ def parallel_embedding_extractor(shard_dir, device):
     if device == "cpu":
         cmd = "python get_sentence_embeddings.py --sentences_file {} --save_file {} --{}".format(
                                                 sentences_file, save_file, device)
+        print(cmd)
     else:
         cmd = "python get_sentence_embeddings.py --sentences_file {} --save_file {} ".format(
                                                 sentences_file, save_file)
@@ -393,3 +394,10 @@ if __name__ == "__main__":
         get_sentences("cnndm", opts.shard_size)
         get_sentence_embeddings("cnndm", opts.parallelism , device)
         score_sentences("cnndm", opts.parallelism)
+
+    if opts.dataset == "gigaword":
+        DOMAINS = ["All"]
+        get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
+        get_sentences("gigaword", opts.shard_size)
+        get_sentence_embeddings("gigaword", opts.parallelism , device)
+        score_sentences("gigaword", opts.parallelism)
