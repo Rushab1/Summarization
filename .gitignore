@@ -4,3 +4,4 @@ packages/*
 *pyc
 *pycache*
 TMP/*
+Summarizers/fast_abs_rl/preprocess/TMP/*
