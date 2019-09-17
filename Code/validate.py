@@ -65,6 +65,8 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     os.chdir("../../Code")
 
 def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
+    classpath = os.path.abspath("../packages/stanford-corenlp-full-2018-10-05/stanford-corenlp-3.9.2.jar")
+    os.environ["CLASSPATH"] = classpath
     output_dir = os.path.abspath(output_dir)
     cmd = ['python', 'summarize.py',
             '-articles_file', os.path.abspath(cleaned_file),
@@ -100,7 +102,7 @@ def validate_domain(dataset, domain, type_s, summarizer):
     val_dir = os.path.abspath(val_dir)
 
     subdirs = os.listdir(val_dir)
-    subdirs = ['0.66', '0.67', '0.68', '0.70' ]
+    subdirs = ['0.66', '0.67', '0.68', '0.7' ]
     for threshold_dir in subdirs:
         threshold_dir = os.path.abspath(os.path.join(val_dir, threshold_dir))
         orig_file = os.path.join(threshold_dir, "orig.txt")
@@ -136,6 +138,7 @@ def calculate_rouge_parallel(val_dir, threshold_dir, JobQueue):
     try:
         f = files2rouge.run(pred_cleaned_file, abstracts_file)
     except Exception as e:
+        print(e)
         JobQueue.put( None )
         return
 
@@ -228,7 +231,7 @@ if __name__ == "__main__":
         DOMAINS = ['All']
 
     DOMAINS = ['All']
-    create_validation_files(opts.dataset, opts.type_s)
+    # create_validation_files(opts.dataset, opts.type_s)
     for domain in DOMAINS:
         validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 
