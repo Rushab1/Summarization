@@ -4,10 +4,13 @@ import argparse
 from IPython import embed
 
 categories = {"Business": 0, "Sports": 1, "Science":2, "Politics":3, "All":-1}
-
 unknown_article_string = "<unknown> This article has been completely cleaned. Just adding this text so that summarizer doesn't crash. We need to have at least max_dec_words number of words so we will be repeating whatever we said till now again.  This article has been completely cleaned. Just adding this text so that summarizer doesn't crash. We need to have at least max_dec_words number of words so we will be repeating whatever we said till now again ."
+MODEL_DIR = os.path.abspath("../../modelfiles/chen_and_bansal/new/")
 
 def test_summaries(articles_file, abstracts_file, output_file, min_length, batchsize=1000):
+    if not os.path.exists("preprocess/TMP"):
+        os.mkdir("preprocess/TMP")
+
     f = open(articles_file).read().strip()
 
     f = f.split("\n")
@@ -50,7 +53,7 @@ def test_summaries(articles_file, abstracts_file, output_file, min_length, batch
     print("\nDecoding ... " )
     os.environ["DATA"] = "preprocess/TMP/finished_files/"
 
-    cmd = "python3 decode_full_model.py --path=preprocess/TMP/decoded_files --model_dir=./pretrained/new/ --beam=1 --test --batch=" + str(batchsize) + " --save_file " + output_file
+    cmd = "python3 decode_full_model.py --path=preprocess/TMP/decoded_files --model_dir=." + MODEL_DIR + " --beam=1 --test --batch=" + str(batchsize) + " --save_file " + output_file
 
     print(cmd)
     os.system(cmd)

@@ -29,7 +29,12 @@ nyt_url_dir = "./nyt_url_dir"
 
 finished_files_dir = "finished_files"
 
-def create_nyt_story_file(articles_file, abstracts_file, save_dir, url_save_file):
+#split article into sentences at <t> </t>
+def extract_sentences(text):
+    text = text.replace("</t>", "")
+    return text.split("<t>")
+
+def create_nyt_story_file(articles_file, abstracts_file, save_dir, url_save_file, use_nltk = False):
     f = open(articles_file).read().strip()
     f = f.replace("\n\n", "\n<unknown>\n").split("\n")
 
@@ -50,10 +55,21 @@ def create_nyt_story_file(articles_file, abstracts_file, save_dir, url_save_file
             a[i] = a[i].decode("utf-8")
         except:
             pass
-        art_sent = nltk.sent_tokenize(f[i])
 
-        a[i] = a[i].replace(";", ".")
-        abs_sent = nltk.sent_tokenize(a[i])
+        if use_nltk:
+            art_sent = nltk.sent_tokenize(f[i])
+            a[i] = a[i].replace(";", ".")
+            abs_sent = nltk.sent_tokenize(a[i])
+        else:
+            art_sent = extract_sentences(f[i])
+            try:
+                a[i] = a[i].replace(";", ".")
+            except Exception as e:
+                print("\n\n========================>" + str(len(a)) + ", " + str(len(f)) + "======" + str(i))
+                print(e)
+                print("========================\n\n")
+                sys.exit(0)
+            abs_sent = extract_sentences(a[i])
 
         abs_sent = ["@highlight \n\n" + sent for sent in abs_sent]
 
