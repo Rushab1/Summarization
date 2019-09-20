@@ -70,14 +70,17 @@ def create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, thr
             abstracts.write(sent)
 
         if i != len(file_list) - 1:
-            orig.write("\n")
-            cleaned.write("\n")
-            abstracts.write("\n")
-
+            orig.write("\n ")
+            cleaned.write("\n " )
+            abstracts.write("\n ")
     print(cnt, cnt2)
+
     orig.close()
     cleaned.close()
     abstracts.close()
+
+    # from IPython import embed
+    # embed()
     orig = open(os.path.join(save_dir, "orig.txt")).read().split()
     cleaned = open(os.path.join(save_dir, "cleaned.txt")).read().split()
     print("Reduction = " + str( 100.0 * len(cleaned) / len(orig)))

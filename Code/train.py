@@ -202,9 +202,7 @@ if __name__ == "__main__":
     type_s = opts.type_s
     relabeling = opts.relabeling
 
-    if dataset == "cnn":
-        DOMAINS = ["All"]
-    if dataset == "cnndm":
+    if dataset in ["cnn", "gigaword", "cnndm"]:
         DOMAINS = ["All"]
     #Running on domains in parallel - Saves time
     pool = mp.Pool()

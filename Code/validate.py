@@ -7,7 +7,7 @@ from create_cleaned_files import *
 import subprocess
 from files2rouge import files2rouge
 import multiprocessing as mp
-
+from IPython import embed
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
 
 def create_validation_files_domain(dataset, domain, type_s, file_list):
@@ -23,7 +23,8 @@ def create_validation_files_domain(dataset, domain, type_s, file_list):
     print(load_file)
     predictions_dct = pickle.load(open(load_file, "rb"))
 
-    for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]:
+    # for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]:
+    for threshold in [0, 0.5, 0.55, 0.575, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65,  0.8 ]:
         print("Creating validation files for Dataset: {}, Domain: {} and Threshold: {}".format(dataset, domain, str(threshold)))
         save_dir = os.path.join(files_dir, str(threshold))
         if not os.path.exists(save_dir):
@@ -41,7 +42,7 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
             '-src', cleaned_file,
-            '-output', os.path.join(output_dir, 'pred_cleaned,.txt'),
+            '-output', os.path.join(output_dir, 'pred_cleaned.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
             '-batch_size', str(3),
@@ -55,7 +56,7 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
             '-src', orig_file,
-            '-output', os.path.join(output_dir, 'pred_orig,.txt'),
+            '-output', os.path.join(output_dir, 'pred_orig.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
             '-batch_size', str(3),
@@ -73,7 +74,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
             '-output_file', os.path.join(output_dir, 'pred_cleaned.txt'),
             '-min_length', str(min_length),
-            '-batchsize', str(1000),
+            '-batchsize', str(100),
             ]
 
     os.chdir("../Summarizers/fast_abs_rl/")
@@ -89,7 +90,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
             '-output_file', os.path.join(output_dir, 'pred_orig.txt'),
             '-min_length', str(min_length),
-            '-batchsize', str(1000)
+            '-batchsize', str(100)
             ]
 
 
@@ -102,7 +103,6 @@ def validate_domain(dataset, domain, type_s, summarizer):
     val_dir = os.path.abspath(val_dir)
 
     subdirs = os.listdir(val_dir)
-    subdirs = ['0.66', '0.67', '0.68', '0.7' ]
     for threshold_dir in subdirs:
         threshold_dir = os.path.abspath(os.path.join(val_dir, threshold_dir))
         orig_file = os.path.join(threshold_dir, "orig.txt")
@@ -127,7 +127,8 @@ def calculate_rouge_parallel(val_dir, threshold_dir, JobQueue):
     abstracts_file = os.path.join(threshold_dir, "abstracts.txt")
     pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned.txt")
 
-    f = open(abstracts_file).read().replace("<t>", "")
+    f = open(abstracts_file).read()
+    f = f.replace("<t>", "")
     f = f.replace("</t>", "")
     g = open(abstracts_file, "w")
     g.write(f)
@@ -148,21 +149,37 @@ def calculate_rouge_parallel(val_dir, threshold_dir, JobQueue):
 
     orig_text = orig_text.replace("<t>", "")
     orig_text = orig_text.replace("</t>", "")
+
+    cleaned_text = re.sub(  "<t> [  ]*?</t>","NO_TEXT_IN_CLEANED_ARTICLE", cleaned_text)
+    tmp = cleaned_text.split("\n")
+    i = 0
+    while tmp[i].strip() == "" or i >= len(tmp):
+        tmp [i] = "NO_TEXT_IN_CLEANED_ARTICLE"
+        i = i + 1
+
+    cleaned_articles = "\n".join(tmp)
+
     cleaned_text = cleaned_text.replace("<t>", "")
     cleaned_text = cleaned_text.replace("</t>", "")
 
-    orig_articles = orig_text.strip().split("\n")
-    cleaned_articles = cleaned_text.strip().split("\n")
+    # orig_articles = orig_text.strip().split("\n")
+    # cleaned_articles = cleaned_text.strip().split("\n")
+    orig_articles = orig_text.split("\n")
+    cleaned_articles = cleaned_text.split("\n")
     avg_reduction = 0
 
     if len(orig_articles) != len(cleaned_articles):
+        print("NONE: 1")
         JobQueue.put(None)
         return
 
     for i in range(0, len(orig_articles)):
         clean_len = len(cleaned_articles[i].split())
         orig_len  = len(orig_articles[i].split())
-        tmp = 1 - 1.0 * clean_len / orig_len
+        try:
+            tmp = 1 - 1.0 * clean_len / orig_len
+        except:
+            tmp = 0
         avg_reduction += 1.0 / len(orig_articles) * tmp
     JobQueue.put( ( threshold, f, avg_reduction ) )
 
@@ -198,6 +215,7 @@ def calculate_rouge(dataset, domain, type_s, save_file = "./rouge.pkl"):
 
     res = JobQueue.get()
     while res != "kill":
+        print("RES========== " + str(res))
         if res == None:
             res = JobQueue.get()
             continue
@@ -209,10 +227,6 @@ def calculate_rouge(dataset, domain, type_s, save_file = "./rouge.pkl"):
         rl.append(f["rouge-l"]["average_f"])
         th.append(threshold)
         redn.append(avg_reduction)
-
-        print("=============================")
-        print(threshold, avg_reduction, f["rouge-l"]["average_f"])
-        print("=============================")
         res = JobQueue.get()
 
     pool.close()
@@ -231,7 +245,7 @@ if __name__ == "__main__":
         DOMAINS = ['All']
 
     DOMAINS = ['All']
-    # create_validation_files(opts.dataset, opts.type_s)
+    create_validation_files(opts.dataset, opts.type_s)
     for domain in DOMAINS:
         validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 

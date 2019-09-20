@@ -31,9 +31,7 @@ def get_sentences(dataset, file_list):
     sentences = []
     for fname in tqdm(file_list):
         f = open(fname)
-        print("<<<<", dataset, fname)
         dct = clean_and_process_file(dataset, fname)
-        print("<<<<", dct)
         article = dct['full_text']
         sentences.extend(article)
     return sentences
@@ -41,11 +39,7 @@ def get_sentences(dataset, file_list):
 def clean_files(dataset, file_list, JobQueue):
     np.random.seed()
     sentences_predict_proba = {}
-    try:
-        sentences = get_sentences(dataset, file_list)
-    except Exception as e:
-        print("ERR: 1" + str(e))
-
+    sentences = get_sentences(dataset, file_list)
     rand_fname = str(int(10e10 * np.random.rand()) )
     tmp_sent_file = "../TMP/" + rand_fname + ".txt"
     tmp_save_file = "../TMP/" + rand_fname + ".pkl"
@@ -56,14 +50,11 @@ def clean_files(dataset, file_list, JobQueue):
     write_file.close()
 
     cmd = ["python", "get_sentence_embeddings.py", "--sentences_file", tmp_sent_file, "--save_file", tmp_save_file, "--cpu"]
-    print("++++++++++++++++++++++")
-    print(cmd)
-    print("++++++++++++++++++++++++")
     subprocess.call(cmd)
 
     embeddings_dct = pickle.load(open(tmp_save_file, "rb"))
     JobQueue.put(embeddings_dct)
-    
+
 def embeddings_writer(save_file, JobQueue):
     dct = {}
     while True:
@@ -146,7 +137,7 @@ def convert_dct_to_mp_sharing(dct, manager, delete_orig = True):
 def main(dataset, type_s, parallelism = 4, force_create_embeddings = False, force_new_predictions = False):
     file_list = open(os.path.join("../Data/Processed_Data/", dataset, "All/test_file_list.txt")).read().strip().split("\n")
     file_list.extend(open(os.path.join("../Data/Processed_Data/", dataset, "All/val_file_list.txt")).read().strip().split("\n"))
-    
+
     save_file = os.path.join("../Data/Processed_Data", dataset,  "pkl_files", "test_val_embeddings.pkl")
 
     if not os.path.exists ("../TMP"):
@@ -167,7 +158,6 @@ def main(dataset, type_s, parallelism = 4, force_create_embeddings = False, forc
             jobs.append(job)
 
         for job in jobs:
-            print("\n\n\n", job, "\n\n\n")
             job.get()
 
         JobQueue.put("kill")
