@@ -1,8 +1,28 @@
 import multiprocessing as mp
+from tqdm import tqdm
+
+def convert_dct_to_mp_sharing(dct, manager, delete_orig = True):
+    manager_dct = manager.dict()
+    keys = list(dct.keys())
+
+    for key in tqdm(keys):
+        manager_dct[key] = dct[key]
+        if delete_orig:
+            del dct[key]
+    return manager_dct
+
 
 #job_list is the list of objects to be splitted in batches of <len(job_list) / parallelism>
 #processor_args = other args to be passed to processor
-def multiprocessing_func(processor, job_list, parallelism, processor_args, writer=None, writer_args=[]):
+def multiprocessing_func(
+        processor,
+        job_list,
+        parallelism,
+        processor_args,
+        writer=None,
+        writer_args=[],
+        ):
+
     manager = mp.Manager()
     pool = mp.Pool()
     JobQueue = manager.Queue()

@@ -39,7 +39,6 @@ def clean_and_process_cnn_file(fname, dataset):
             }
     return return_dct
 
-
 def clean_and_process_nyt_file( fname):
     dir_orig = "../Data/Datasets/nyt/orig_dataset/"
     f = fname.split("/")[-1]
