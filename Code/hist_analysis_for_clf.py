@@ -20,6 +20,9 @@ def processor(file_list, predictions, JobQueue):
         fname = x[1]
 
         sentences = clean_and_process_file(dataset, fname)
+        if sentences == "<ERROR>":
+            continue
+
         sentences = sentences["full_text"]
         clf_prob = []
 
@@ -44,9 +47,33 @@ def writer(saveFile, JobQueue):
         res = JobQueue.get()
     pickle.dump( hist_dct, open(saveFile, "wb" ))
 
-def main(dataset, type_s):
+def analyze_histograms(pkl_file, thresholds = [0, 0.3, 0.4, 0.5, 0.6, 0.6, 0.7, 0.8, 0.9, 1.0]):
+    result = {}
+
+    hist_list = pickle.load(open(pkl_file, "rb"))
+    hist = [ hist_list[h][0] for h in hist_list 
+                    if np.NaN not in hist_list[h][0] and 
+                    sum(hist_list[h][0]) != 0]
+    
+    for threshold in thresholds:
+        th = int(np.ceil(threshold*10))
+        imp_hist = [sum(h[th:]) for h in hist]
+        sum_hist = [sum(h) for h in hist]
+        per_imp = np.array(imp_hist) / np.array(sum_hist) 
+        per_imp_avg = np.mean(per_imp)
+        # print("% of important sentences = " + str(per_imp_avg))
+        result[threshold] = per_imp_avg
+    return result
+
+def main(dataset, type_s, trained_on_dataset):
     for domain in DOMAINS:
-        predictions_file = os.path.join("../Data/Processed_Data/",
+        if trained_on_dataset != None:
+            predictions_file = os.path.join("../Data/Cross_Classifier_Predictions/",
+                                        trained_on_dataset,
+                                        dataset + ".pkl")
+            print(predictions_file)
+        else:
+            predictions_file = os.path.join("../Data/Processed_Data/",
                                         dataset,
                                         domain,
                                         type_s,
@@ -72,7 +99,10 @@ def main(dataset, type_s):
         for i in range(0, len(file_list)):
             file_list[i] = (dataset, file_list[i])
 
-        save_file = "../TMP/" + dataset + domain + "file_histograms_clf.pkl"
+        if trained_on_dataset == None:
+            save_file = "../TMP/" + dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
+        else:
+            save_file = "../TMP/" + trained_on_dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
 
         predictions = pickle.load(open(predictions_file, "rb"))
 
@@ -84,15 +114,24 @@ def main(dataset, type_s):
                                 )
         print("Done")
 
-    print("Loading test data")
-
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("-dataset", type=str, required = True)
+    args.add_argument("-trained_on_dataset", default=None)
     args.add_argument("-type_s", type=str, default="importance")
     opts = args.parse_args()
 
     if opts.dataset in ["cnn", "gigaword", "cnndm"]:
         DOMAINS = ["All"]
 
-    main(opts.dataset, opts.type_s)
+    # main(opts.dataset, opts.type_s, opts.trained_on_dataset)
+
+    result = {}
+    for f in os.listdir("../TMP/"):
+        result_f = analyze_histograms("../TMP/" + f)
+        f = f.replace(".pkl", "")
+        result[f] = result_f
+        print(f)
+        print(result_f)
+        print("\n")
+    pickle.dump(result, open("./hist_analysis_for_clf.pkl", "wb"))

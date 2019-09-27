@@ -1,5 +1,5 @@
 import os
-import tqdm
+from tqdm import tqdm
 import sys
 import re
 from shutil import copyfile
@@ -43,7 +43,6 @@ def format_file(f):
     except:
         return fname, [], []
 
-    print(match)
     assert(len(match) == 1)
     headline = match[0]
 
@@ -71,9 +70,7 @@ def preprocess(dataDir, max_files = None):
         random.shuffle(file_list)
         files = []
         
-        print(file_list, dataDir, dir)
-        for fname in file_list:
-            print(dir, fname)
+        for fname in tqdm(file_list):
             f = open(join(dataDir, dir, fname)).read().strip()
 
             pattern = re.compile("<DOC id.*?>.*?</DOC>", re.DOTALL)
@@ -84,7 +81,6 @@ def preprocess(dataDir, max_files = None):
                 del f[0]
             files.extend(f)
 
-            print(len(f))
             if max_files != None and len(files) > 10*max_files:
                 break
     
@@ -92,9 +88,6 @@ def preprocess(dataDir, max_files = None):
             random.shuffle(files)
         else:
             files = random.sample( files, max_files)
-
-        print(len(files))
-
         for i in range(0, len(files)):
             fname, article_sentences, abstract_sentences = format_file(files[i])
             if len(article_sentences) == 0:
@@ -120,7 +113,7 @@ def preprocess(dataDir, max_files = None):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("-max_files", type=int, default = 10000)
+    args.add_argument("-max_files", type=int, default = 1000000)
     opts = args.parse_args()
 
     preprocess(STORIES_DIR, opts.max_files)

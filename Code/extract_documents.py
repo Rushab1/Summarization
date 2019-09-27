@@ -19,7 +19,8 @@ def clean_and_process_cnn_file(fname, dataset):
         fpath = os.path.join(dir_orig, fname.split("/")[-1])
         story = json.load(open(fpath))
     except Exception as e:
-        print(e)
+        # print(e)
+        return "<ERROR>"
         pass
         # fpath = fname
         # story = json.load(open(fpath))
@@ -31,6 +32,7 @@ def clean_and_process_cnn_file(fname, dataset):
         print("\n\n\n_____________")
         print(fpath);
         print("\n\n\n_____________")
+
     abstract = story['abstract'].split("\n")
 
     return_dct = {

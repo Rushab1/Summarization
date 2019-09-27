@@ -397,7 +397,15 @@ if __name__ == "__main__":
 
     if opts.dataset == "gigaword":
         DOMAINS = ["All"]
-        # get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
+        get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
         get_sentences("gigaword", opts.shard_size)
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
+
+    if opts.dataset == "ontonotes_mz":
+        DOMAINS = ["All"]
+        get_file_list("../Data/Datasets/ontonotes_mz/pair_sent_matched/", "ontonotes_mz")
+        get_sentences("ontonotes_mz", opts.shard_size)
+        get_sentence_embeddings("ontonotes_mz", opts.parallelism , device)
+        score_sentences("ontonotes_mz", opts.parallelism)
+        f  = re.sub(pattern, "", f)
