@@ -404,10 +404,9 @@ if __name__ == "__main__":
 
     if opts.dataset in ["ontonotes_mz", "ontonotes_wsj"]:
         DOMAINS = ["All"]
-        # get_file_list(
-                # "../Data/Datasets/" + opts.dataset + "/pair_sent_matched/", 
-                # opts.dataset)
-        # get_sentences(opts.dataset, opts.shard_size)
+        get_file_list(
+                "../Data/Datasets/" + opts.dataset + "/pair_sent_matched/",
+                opts.dataset)
+        get_sentences(opts.dataset, opts.shard_size)
         get_sentence_embeddings(opts.dataset, opts.parallelism , device)
         score_sentences(opts.dataset, opts.parallelism)
-        f  = re.sub(pattern, "", f)

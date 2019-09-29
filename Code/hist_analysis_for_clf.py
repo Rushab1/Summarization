@@ -51,22 +51,21 @@ def analyze_histograms(pkl_file, thresholds = [0, 0.3, 0.4, 0.5, 0.6, 0.6, 0.7, 
     result = {}
 
     hist_list = pickle.load(open(pkl_file, "rb"))
-    hist = [ hist_list[h][0] for h in hist_list 
-                    if np.NaN not in hist_list[h][0] and 
+    hist = [ hist_list[h][0] for h in hist_list
+                    if np.NaN not in hist_list[h][0] and
                     sum(hist_list[h][0]) != 0]
-    
+
     for threshold in thresholds:
         th = int(np.ceil(threshold*10))
         imp_hist = [sum(h[th:]) for h in hist]
         sum_hist = [sum(h) for h in hist]
-        per_imp = np.array(imp_hist) / np.array(sum_hist) 
+        per_imp = np.array(imp_hist) / np.array(sum_hist)
         per_imp_avg = np.mean(per_imp)
         # print("% of important sentences = " + str(per_imp_avg))
         result[threshold] = per_imp_avg
     return result
 
 def main(dataset, type_s, trained_on_dataset):
-    print("IN MAIN", DOMAINS, dataset, trained_on_dataset)
     for domain in DOMAINS:
         if trained_on_dataset != None:
             predictions_file = os.path.join("../Data/Cross_Classifier_Predictions/",
