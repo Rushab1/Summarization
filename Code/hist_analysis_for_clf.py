@@ -66,6 +66,7 @@ def analyze_histograms(pkl_file, thresholds = [0, 0.3, 0.4, 0.5, 0.6, 0.6, 0.7, 
     return result
 
 def main(dataset, type_s, trained_on_dataset):
+    print("IN MAIN", DOMAINS, dataset, trained_on_dataset)
     for domain in DOMAINS:
         if trained_on_dataset != None:
             predictions_file = os.path.join("../Data/Cross_Classifier_Predictions/",
@@ -121,7 +122,7 @@ if __name__ == "__main__":
     args.add_argument("-type_s", type=str, default="importance")
     opts = args.parse_args()
 
-    if opts.dataset in ["cnn", "gigaword", "cnndm"]:
+    if opts.dataset in ["cnn", "gigaword", "cnndm", "ontonotes_mz"]:
         DOMAINS = ["All"]
 
     # main(opts.dataset, opts.type_s, opts.trained_on_dataset)

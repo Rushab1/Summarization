@@ -402,10 +402,12 @@ if __name__ == "__main__":
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
 
-    if opts.dataset == "ontonotes_mz":
+    if opts.dataset in ["ontonotes_mz", "ontonotes_wsj"]:
         DOMAINS = ["All"]
-        get_file_list("../Data/Datasets/ontonotes_mz/pair_sent_matched/", "ontonotes_mz")
-        get_sentences("ontonotes_mz", opts.shard_size)
-        get_sentence_embeddings("ontonotes_mz", opts.parallelism , device)
-        score_sentences("ontonotes_mz", opts.parallelism)
+        # get_file_list(
+                # "../Data/Datasets/" + opts.dataset + "/pair_sent_matched/", 
+                # opts.dataset)
+        # get_sentences(opts.dataset, opts.shard_size)
+        get_sentence_embeddings(opts.dataset, opts.parallelism , device)
+        score_sentences(opts.dataset, opts.parallelism)
         f  = re.sub(pattern, "", f)
