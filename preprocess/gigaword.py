@@ -29,7 +29,7 @@ join = os.path.join
 def format_file(f):
     article_sentences = []
     abstract_sentences = []
-    
+
     f = f.strip()
     pattern = re.compile("<DOC id=\"(.*?)\".*?>", re.DOTALL)
     match = re.match(pattern, f)
@@ -69,7 +69,7 @@ def preprocess(dataDir, max_files = None):
         file_list = os.listdir(join(dataDir, dir))
         random.shuffle(file_list)
         files = []
-        
+
         for fname in tqdm(file_list):
             f = open(join(dataDir, dir, fname)).read().strip()
 
@@ -83,12 +83,11 @@ def preprocess(dataDir, max_files = None):
 
             if max_files != None and len(files) > 10*max_files:
                 break
-    
-        if max_files == None:
-            random.shuffle(files)
-        else:
+
+        if max_files != None:
             files = random.sample( files, max_files)
-        for i in range(0, len(files)):
+
+        for i in tqdm(range(0, len(files))):
             fname, article_sentences, abstract_sentences = format_file(files[i])
             if len(article_sentences) == 0:
                 continue
@@ -113,7 +112,7 @@ def preprocess(dataDir, max_files = None):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("-max_files", type=int, default = 1000000)
+    args.add_argument("-max_files", type=int, default = None)
     opts = args.parse_args()
 
     preprocess(STORIES_DIR, opts.max_files)

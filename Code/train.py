@@ -202,7 +202,7 @@ if __name__ == "__main__":
     type_s = opts.type_s
     relabeling = opts.relabeling
 
-    if dataset in ["cnn", "gigaword", "cnndm"]:
+    if dataset in ["cnn", "gigaword", "cnndm", "ontonotes_mz", "ontonotes_wsj"]:
         DOMAINS = ["All"]
 
     #Running on domains in parallel - Saves time

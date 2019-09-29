@@ -211,7 +211,7 @@ if __name__ == "__main__":
 
     create_train_test_data(opts.dataset, opts.type_s)
 
-    if opts.dataset in ["cnn", "cnndm", "gigaword"]:
+    if opts.dataset in ["cnn", "cnndm", "gigaword", "ontonotes_mz", "ontonotes_wsj"]:
         DOMAINS = []
 
     for domain in DOMAINS:
