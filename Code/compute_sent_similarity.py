@@ -18,7 +18,6 @@ PER_VAL_FILES = 5.0
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations"]
 
 def get_file_lists_domain_cnndm(data_dir, domain):
-    print(data_dir)
     test_file_list = [];
     val_file_list = [];
     file_list = [];
@@ -40,7 +39,7 @@ def get_file_lists_domain_cnndm(data_dir, domain):
 
 #Makes a file of all training and test file locations for every year given the news type
 def get_file_lists_domain(data_dir, domain):
-    if "cnndm" in data_dir or "gigaword" in data_dir:
+    if "cnndm" in data_dir:
         return get_file_lists_domain_cnndm(data_dir, domain)
 
     file_list = []
@@ -397,8 +396,8 @@ if __name__ == "__main__":
 
     if opts.dataset == "gigaword":
         DOMAINS = ["All"]
-        get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
-        get_sentences("gigaword", opts.shard_size)
+        # get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
+        # get_sentences("gigaword", opts.shard_size)
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
 

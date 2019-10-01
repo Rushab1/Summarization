@@ -32,6 +32,8 @@ def get_sentences(dataset, file_list):
     for fname in tqdm(file_list):
         f = open(fname)
         dct = clean_and_process_file(dataset, fname)
+        if dct == '<ERROR>':
+            continue
         article = dct['full_text']
         sentences.extend(article)
     return sentences
@@ -46,7 +48,16 @@ def clean_files(dataset, file_list, JobQueue):
 
     #get embeddings
     write_file = open(tmp_sent_file, "w")
-    write_file.write("\n".join(sentences))
+
+    #To avoid memory problems
+    n = len(sentences)
+    i = 0
+    h = 1000
+    while i < n:
+        s = i
+        e = min(n, i + h)
+        write_file.write("\n".join(sentences[s:e]))
+        i = i + h
     write_file.close()
 
     cmd = ["python", "get_sentence_embeddings.py", "--sentences_file", tmp_sent_file, "--save_file", tmp_save_file, "--cpu"]

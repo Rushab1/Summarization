@@ -29,9 +29,7 @@ def clean_and_process_cnn_file(fname, dataset):
     try:
         full_text = story['article'].split("\n")
     except:
-        print("\n\n\n_____________")
         print(fpath);
-        print("\n\n\n_____________")
 
     abstract = story['abstract'].split("\n")
 
