@@ -96,6 +96,7 @@ def main(dataset, type_s, trained_on_dataset):
 
         file_list.extend(open(val_file).read().strip().split("\n"))
 
+        print(" NUMBER OF FILE = " + str(len(file_list)))
         for i in range(0, len(file_list)):
             file_list[i] = (dataset, file_list[i])
 
@@ -121,17 +122,19 @@ if __name__ == "__main__":
     args.add_argument("-type_s", type=str, default="importance")
     opts = args.parse_args()
 
-    if opts.dataset in ["cnn", "gigaword", "cnndm", "ontonotes_mz"]:
+    if opts.dataset in ["cnn", "gigaword", "cnndm", "ontonotes_mz", "ontonotes_wsj"]:
         DOMAINS = ["All"]
 
     # main(opts.dataset, opts.type_s, opts.trained_on_dataset)
 
     result = {}
     for f in os.listdir("../TMP/"):
-        result_f = analyze_histograms("../TMP/" + f)
-        f = f.replace(".pkl", "")
-        result[f] = result_f
-        print(f)
-        print(result_f)
-        print("\n")
-    pickle.dump(result, open("./hist_analysis_for_clf.pkl", "wb"))
+        if f.startswith(opts.trained_on_dataset):
+            result_f = analyze_histograms("../TMP/" + f)
+            f = f.replace(".pkl", "")
+            result[f] = result_f
+            print(f)
+            print(result_f)
+            print("\n")
+
+    pickle.dump(result, open(opts.trained_on_dataset + "_hist_analysis_for_clf.pkl", "wb"))

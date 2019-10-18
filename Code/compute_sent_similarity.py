@@ -70,15 +70,15 @@ def get_file_lists_domain(data_dir, domain):
 
 def write_file_lists(data_dir, file_list, val_file_list, test_file_list):
     f = open(os.path.join(data_dir, "train_file_list.txt"), "w")
-    f.write("\n".join(file_list))
+    f.write(u"\n".join(file_list).encode("utf-8"))
     f.close()
 
     f = open(os.path.join(data_dir, "test_file_list.txt"), "w")
-    f.write("\n".join(test_file_list))
+    f.write(u"\n".join(test_file_list).encode("utf-8"))
     f.close()
 
     f = open(os.path.join(data_dir, "val_file_list.txt"), "w")
-    f.write("\n".join(val_file_list))
+    f.write(u"\n".join(val_file_list).encode("utf-8"))
     f.close()
 
 #Some files may occur in more than one domains but we treat them as different files
@@ -156,7 +156,8 @@ def json_sentence_writer(JobQueue):
 
         f = open(shard_save_file, "w")
         for i in range(0, len(sentences)):
-            f.write(sentences[i] + "\n")
+            f.write(sentences[i].encode("latin1"))
+            f.write( "\n")
         f.close()
 
 #Extracts all sentences from the dataset and dumps into a text file, this file is typically large ~1GB
@@ -396,8 +397,8 @@ if __name__ == "__main__":
 
     if opts.dataset == "gigaword":
         DOMAINS = ["All"]
-        # get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
-        # get_sentences("gigaword", opts.shard_size)
+        get_file_list("../Data/Datasets/gigaword/pair_sent_matched/", "gigaword")
+        get_sentences("gigaword", opts.shard_size)
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
 

@@ -19,7 +19,11 @@ def normalize(x, mu, sig):
 
 def load_embeddings(dataset):
     pkl_file = "../Data/Processed_Data/" + dataset + "/pkl_files/test_val_embeddings.pkl"
-    embeddings = pickle.load(open(pkl_file, "rb"))
+    try:
+        embeddings = pickle.load(open(pkl_file, "rb"))
+    except:
+        embeddings = pickle.load(open(pkl_file, "rb"), encoding="latin1")
+
     embeddings_list = []
     cnt = 1
     for sent in embeddings:
@@ -69,7 +73,6 @@ def main(opts):
     #Load data, classifier
     ################################
     print("Loading Embeddings and Classifier ...")
-    embeddings_list = load_embeddings(opts.dataset)
     classifier_file = os.path.join("../Data/Processed_Data/",
                                     opts.classifier_dataset,
                                     opts.classifier_domain,
@@ -77,6 +80,7 @@ def main(opts):
                                     "model.pkl"
                                     )
     classifier = load_classifier(classifier_file)
+    embeddings_list = load_embeddings(opts.dataset)
 
     ################################
     #Make relevant directories

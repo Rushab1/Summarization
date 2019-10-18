@@ -2,11 +2,22 @@ import os
 import pickle
 import argparse
 import nltk
-from val_test_predictions import normalize
+# from val_test_predictions import normalize
 from extract_documents import *
 from tqdm import tqdm
 
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
+
+def normalize(x, mu, sig):
+    x = deepcopy(x)
+    x = np.array(x)
+    mu.resize(512, 1)
+    sig.resize(512, 1)
+    x = x.transpose()
+    x =  (x - mu) / sig
+    x = x.transpose()
+    return x
+
 
 #article = list of article sentences, example - tokenized by nltk.sent_tokenizer (order of sentences must be preserved)
 #embeddings_dct = dictionary of the form <sentence, its embedding>. Can use get_sentence_embeddings.py for this

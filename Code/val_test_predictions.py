@@ -30,7 +30,6 @@ def normalize(x, mu, sig):
 def get_sentences(dataset, file_list):
     sentences = []
     for fname in tqdm(file_list):
-        f = open(fname)
         dct = clean_and_process_file(dataset, fname)
         if dct == '<ERROR>':
             continue
@@ -56,7 +55,7 @@ def clean_files(dataset, file_list, JobQueue):
     while i < n:
         s = i
         e = min(n, i + h)
-        write_file.write("\n".join(sentences[s:e]))
+        write_file.write(u"\n".join(sentences[s:e]).encode("utf-8"))
         i = i + h
     write_file.close()
 
@@ -162,6 +161,7 @@ def main(dataset, type_s, parallelism = 4, force_create_embeddings = False, forc
         manager = mp.Manager()
         JobQueue = manager.Queue()
         jobs = []
+            
         writer = pool.apply_async(embeddings_writer, (save_file, JobQueue, ))
 
         for i in range(0, n, h):
