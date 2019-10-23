@@ -221,7 +221,7 @@ if __name__ == "__main__":
     args.add_argument("--force_new_predictions", action="store_true")
     opts = args.parse_args()
 
-    if opts.dataset in ["cnn", "cnndm", "gigaword", "ontonotes_mz", "ontonotes_wsj"]:
+    if opts.dataset not in ["nyt"]:
         DOMAINS = ["All"]
     opts = args.parse_args()
     main(opts.dataset, opts.type_s, opts.parallelism, opts.force_create_embeddings, opts.force_new_predictions)

@@ -70,15 +70,18 @@ def get_file_lists_domain(data_dir, domain):
 
 def write_file_lists(data_dir, file_list, val_file_list, test_file_list):
     f = open(os.path.join(data_dir, "train_file_list.txt"), "w")
-    f.write(u"\n".join(file_list).encode("utf-8"))
+    # from IPython import embed
+    # embed()
+    # f.write(u"\n".join(file_list).encode("utf-8"))
+    f.write("\n".join(file_list))
     f.close()
 
     f = open(os.path.join(data_dir, "test_file_list.txt"), "w")
-    f.write(u"\n".join(test_file_list).encode("utf-8"))
+    f.write("\n".join(test_file_list))
     f.close()
 
     f = open(os.path.join(data_dir, "val_file_list.txt"), "w")
-    f.write(u"\n".join(val_file_list).encode("utf-8"))
+    f.write("\n".join(val_file_list))
     f.close()
 
 #Some files may occur in more than one domains but we treat them as different files
@@ -156,7 +159,7 @@ def json_sentence_writer(JobQueue):
 
         f = open(shard_save_file, "w")
         for i in range(0, len(sentences)):
-            f.write(sentences[i].encode("latin1"))
+            f.write(sentences[i].encode("latin1").decode("latin1"))
             f.write( "\n")
         f.close()
 
@@ -402,7 +405,7 @@ if __name__ == "__main__":
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
 
-    if opts.dataset in ["ontonotes_mz", "ontonotes_wsj"]:
+    if opts.dataset in ["ontonotes_mz", "ontonotes_wsj", "ontonotes_tc"]:
         DOMAINS = ["All"]
         get_file_list(
                 "../Data/Datasets/" + opts.dataset + "/pair_sent_matched/",

@@ -122,7 +122,7 @@ if __name__ == "__main__":
     args.add_argument("-type_s", type=str, default="importance")
     opts = args.parse_args()
 
-    if opts.dataset in ["cnn", "gigaword", "cnndm", "ontonotes_mz", "ontonotes_wsj"]:
+    if opts.dataset not in ["nyt"]:
         DOMAINS = ["All"]
 
     # main(opts.dataset, opts.type_s, opts.trained_on_dataset)

@@ -29,6 +29,7 @@ def create_validation_files_domain(dataset, domain, type_s, file_list):
         save_dir = os.path.join(files_dir, str(threshold))
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
+
         create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, threshold=threshold)
 
 def create_validation_files(dataset, type_s):
@@ -42,11 +43,12 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
             '-src', cleaned_file,
-            '-output', os.path.join(output_dir, 'pred_cleaned.txt'),
+            '-output', os.path.join(output_dir, 'pred_cleaned_opennmt.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
-            '-batch_size', str(3),
-            '-gpu', '0']
+            '-batch_size', str(300),
+            # '-gpu', '0',
+            ]
     subprocess.call(cmd)
 
     if not orig:
@@ -56,11 +58,12 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
             '-src', orig_file,
-            '-output', os.path.join(output_dir, 'pred_orig.txt'),
+            '-output', os.path.join(output_dir, 'pred_orig_opennmt.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
-            '-batch_size', str(3),
-            '-gpu', '0']
+            '-batch_size', str(300),
+            # '-gpu', '0',
+            ]
 
     subprocess.call(cmd)
     os.chdir("../../Code")
@@ -72,7 +75,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     cmd = ['python', 'summarize.py',
             '-articles_file', os.path.abspath(cleaned_file),
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
-            '-output_file', os.path.join(output_dir, 'pred_cleaned.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_cleaned_fastabs.txt'),
             '-min_length', str(min_length),
             '-batchsize', str(100),
             ]
@@ -88,7 +91,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     cmd = ['python', 'summarize.py',
             '-articles_file', os.path.abspath(orig_file),
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
-            '-output_file', os.path.join(output_dir, 'pred_orig.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_orig_opennmt.txt'),
             '-min_length', str(min_length),
             '-batchsize', str(100)
             ]
@@ -122,10 +125,10 @@ def validate_domain(dataset, domain, type_s, summarizer):
         if summarizer.lower() == "fastabs" or summarizer.lower() == "fast-abs":
             fast_abs_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
 
-def calculate_rouge_parallel(val_dir, threshold_dir, JobQueue):
+def calculate_rouge_parallel(val_dir, threshold_dir, summarizer, JobQueue):
     threshold_dir = os.path.abspath(os.path.join(val_dir, threshold_dir))
     abstracts_file = os.path.join(threshold_dir, "abstracts.txt")
-    pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned.txt")
+    pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned_" + summarizer + ".txt")
 
     f = open(abstracts_file).read()
     f = f.replace("<t>", "")
@@ -183,7 +186,7 @@ def calculate_rouge_parallel(val_dir, threshold_dir, JobQueue):
         avg_reduction += 1.0 / len(orig_articles) * tmp
     JobQueue.put( ( threshold, f, avg_reduction ) )
 
-def calculate_rouge(dataset, domain, type_s, save_file = "./rouge.pkl"):
+def calculate_rouge(dataset, domain, type_s, summarizer, save_file = "./rouge.pkl"):
     val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files", type_s)
     val_dir = os.path.abspath(val_dir)
 
@@ -204,7 +207,7 @@ def calculate_rouge(dataset, domain, type_s, save_file = "./rouge.pkl"):
 
     for threshold_dir in subdirs:
         job = pool.apply_async( calculate_rouge_parallel,
-                                (val_dir, threshold_dir, JobQueue)
+                                (val_dir, threshold_dir, summarizer, JobQueue)
                                 )
         jobs.append(job)
 
@@ -245,8 +248,10 @@ if __name__ == "__main__":
         DOMAINS = ['All']
 
     DOMAINS = ['All']
-    create_validation_files(opts.dataset, opts.type_s)
+
+    # create_validation_files(opts.dataset, opts.type_s)
+    
     for domain in DOMAINS:
         validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 
-    calculate_rouge(opts.dataset, "All", "importance", opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
+    calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
