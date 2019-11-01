@@ -8,7 +8,18 @@ import subprocess
 from files2rouge import files2rouge
 import multiprocessing as mp
 from IPython import embed
+import time
+import random
+
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
+# THRESHOLDS = [0, 0.55]
+# THRESHOLDS = [0.65, 0.67]
+# THRESHOLDS = [0.68, 0.69]
+# THRESHOLDS = [ 0.7, 0.75]
+THRESHOLDS = [ 0.8] 
+
+for i in range(0, len(THRESHOLDS)):
+    THRESHOLDS[i] = str(THRESHOLDS[i])
 
 def create_validation_files_domain(dataset, domain, type_s, file_list):
     files_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files")
@@ -23,8 +34,8 @@ def create_validation_files_domain(dataset, domain, type_s, file_list):
     print(load_file)
     predictions_dct = pickle.load(open(load_file, "rb"))
 
-    # for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]:
-    for threshold in [0, 0.5, 0.55, 0.575, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65,  0.8 ]:
+    for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]: # For cnndm
+    # for threshold in [0, 0.5, 0.55, 0.575, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65,  0.8 ]:  # For nytimes
         print("Creating validation files for Dataset: {}, Domain: {} and Threshold: {}".format(dataset, domain, str(threshold)))
         save_dir = os.path.join(files_dir, str(threshold))
         if not os.path.exists(save_dir):
@@ -39,6 +50,28 @@ def create_validation_files(dataset, type_s):
         create_validation_files_domain(dataset, domain, type_s, file_list)
 
 def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
+
+    files = [orig_file, cleaned_file]
+    for j in range(0, 2):
+        fname = files[j]
+        f = open(fname).read().split("\n")
+        for i in range(0,len(f)):
+            f_spl = f[i].split()
+        
+            if len(f_spl) > 5000:
+                f[i] = " ".join(f_spl[:5000])
+
+            if len(f_spl) < 10:
+                f[i] = "This article has been replaced because it was empty. This has almost no effect on the Rouge scores."
+        
+        r = str(int(random.random() * 10**10))
+        g = open("../TMP/" + r + ".txt", "w")
+        g.write("\n".join(f))
+        g.close()
+        files[j] = os.path.abspath("../TMP/" + r + ".txt")
+    orig_file = files[0]
+    cleaned_file = files[1]
+
     os.chdir("../Summarizers/OpenNMT-py/")
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
@@ -49,11 +82,14 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
             '-batch_size', str(300),
             # '-gpu', '0',
             ]
+    
+    start_time = time.time()
     subprocess.call(cmd)
+    run_time = time.time() - start_time
 
     if not orig:
         os.chdir("../../Code")
-        return
+        return run_time
 
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
@@ -106,6 +142,7 @@ def validate_domain(dataset, domain, type_s, summarizer):
     val_dir = os.path.abspath(val_dir)
 
     subdirs = os.listdir(val_dir)
+    subdirs = THRESHOLDS
     for threshold_dir in subdirs:
         threshold_dir = os.path.abspath(os.path.join(val_dir, threshold_dir))
         orig_file = os.path.join(threshold_dir, "orig.txt")
@@ -118,10 +155,11 @@ def validate_domain(dataset, domain, type_s, summarizer):
         else:
             orig = False
 
-        if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
-            opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
-
         print("Validating for threshold = " + threshold_dir.split("/")[-1])
+        if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
+            run_time = opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
+        print(threshold, "Time: " + str(run_time))
+
         if summarizer.lower() == "fastabs" or summarizer.lower() == "fast-abs":
             fast_abs_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
 
@@ -130,12 +168,13 @@ def calculate_rouge_parallel(val_dir, threshold_dir, summarizer, JobQueue):
     abstracts_file = os.path.join(threshold_dir, "abstracts.txt")
     pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned_" + summarizer + ".txt")
 
-    f = open(abstracts_file).read()
-    f = f.replace("<t>", "")
-    f = f.replace("</t>", "")
-    g = open(abstracts_file, "w")
-    g.write(f)
-    g.close()
+    for fname in [abstracts_file, pred_cleaned_file]:
+        f = open(fname).read()
+        f = f.replace("<t>", "")
+        f = f.replace("</t>", "")
+        g = open(fname, "w")
+        g.write(f)
+        g.close()
     threshold = float(threshold_dir.split("/")[-1])
 
     print(threshold)
@@ -206,6 +245,11 @@ def calculate_rouge(dataset, domain, type_s, summarizer, save_file = "./rouge.pk
     jobs = []
 
     for threshold_dir in subdirs:
+        pred_fname = "pred_cleaned_" + summarizer + ".txt"
+        if not os.path.exists(os.path.join(val_dir, threshold_dir, pred_fname)):
+                continue
+
+
         job = pool.apply_async( calculate_rouge_parallel,
                                 (val_dir, threshold_dir, summarizer, JobQueue)
                                 )
@@ -251,7 +295,7 @@ if __name__ == "__main__":
 
     # create_validation_files(opts.dataset, opts.type_s)
     
-    for domain in DOMAINS:
-        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
+    # for domain in DOMAINS:
+        # validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 
     calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
