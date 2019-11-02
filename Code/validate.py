@@ -12,11 +12,8 @@ import time
 import random
 
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
-# THRESHOLDS = [0, 0.55]
-# THRESHOLDS = [0.65, 0.67]
-# THRESHOLDS = [0.68, 0.69]
-# THRESHOLDS = [ 0.7, 0.75]
-THRESHOLDS = [ 0.8] 
+THRESHOLDS = [0, 0.55, 0.6, 0.65, 0.67, 0.7, 0.75, 0.8]
+MIN_LENGTH = 35
 
 for i in range(0, len(THRESHOLDS)):
     THRESHOLDS[i] = str(THRESHOLDS[i])
@@ -57,13 +54,13 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
         f = open(fname).read().split("\n")
         for i in range(0,len(f)):
             f_spl = f[i].split()
-        
+
             if len(f_spl) > 5000:
                 f[i] = " ".join(f_spl[:5000])
 
             if len(f_spl) < 10:
                 f[i] = "This article has been replaced because it was empty. This has almost no effect on the Rouge scores."
-        
+
         r = str(int(random.random() * 10**10))
         g = open("../TMP/" + r + ".txt", "w")
         g.write("\n".join(f))
@@ -76,13 +73,15 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
     cmd = ['python', 'translate.py',
             '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
             '-src', cleaned_file,
-            '-output', os.path.join(output_dir, 'pred_cleaned_opennmt.txt'),
+            '-output', os.path.join(output_dir,
+                       'pred_cleaned_opennmt' + str(min_length) + '.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
-            '-batch_size', str(300),
-            # '-gpu', '0',
+            '-batch_size', str(3),
+            '-gpu', '0',
             ]
-    
+
+    print(" ".join(cmd))
     start_time = time.time()
     subprocess.call(cmd)
     run_time = time.time() - start_time
@@ -91,18 +90,19 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
         os.chdir("../../Code")
         return run_time
 
-    cmd = ['python', 'translate.py',
-            '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
-            '-src', orig_file,
-            '-output', os.path.join(output_dir, 'pred_orig_opennmt.txt'),
-            '-ignore_when_blocking', '"." "</t>" "<t>"',
-            '-min_length', str(min_length),
-            '-batch_size', str(300),
+    # cmd = ['python', 'translate.py',
+            # '-model', '../../modelfiles/OpenNMT-py/sum_transformer_model_acc_57.25_ppl_9.22_e16.pt',
+            # '-src', orig_file,
+            # '-output', os.path.join(output_dir, 'pred_orig_opennmt' + str(min_length) + '.txt'),
+            # '-ignore_when_blocking', '"." "</t>" "<t>"',
+            # '-min_length', str(min_length),
+            # '-batch_size', str(1),
             # '-gpu', '0',
-            ]
+            # ]
 
-    subprocess.call(cmd)
+    # subprocess.call(cmd)
     os.chdir("../../Code")
+    return run_time
 
 def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
     classpath = os.path.abspath("../packages/stanford-corenlp-full-2018-10-05/stanford-corenlp-3.9.2.jar")
@@ -111,7 +111,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     cmd = ['python', 'summarize.py',
             '-articles_file', os.path.abspath(cleaned_file),
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
-            '-output_file', os.path.join(output_dir, 'pred_cleaned_fastabs.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_cleaned_fastabs' + str(min_length) +'.txt'),
             '-min_length', str(min_length),
             '-batchsize', str(100),
             ]
@@ -127,7 +127,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     cmd = ['python', 'summarize.py',
             '-articles_file', os.path.abspath(orig_file),
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
-            '-output_file', os.path.join(output_dir, 'pred_orig_opennmt.txt'),
+            '-output_file', os.path.join(output_dir, 'pred_orig_opennmt' + str(min_length) + '.txt'),
             '-min_length', str(min_length),
             '-batchsize', str(100)
             ]
@@ -157,7 +157,7 @@ def validate_domain(dataset, domain, type_s, summarizer):
 
         print("Validating for threshold = " + threshold_dir.split("/")[-1])
         if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
-            run_time = opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
+            run_time = opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = MIN_LENGTH, orig = orig)
         print(threshold, "Time: " + str(run_time))
 
         if summarizer.lower() == "fastabs" or summarizer.lower() == "fast-abs":
@@ -294,8 +294,8 @@ if __name__ == "__main__":
     DOMAINS = ['All']
 
     # create_validation_files(opts.dataset, opts.type_s)
-    
-    # for domain in DOMAINS:
-        # validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
 
-    calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
+    for domain in DOMAINS:
+        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
+
+    # calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
