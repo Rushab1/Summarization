@@ -5,7 +5,7 @@ import numpy as np
 import sys
 from create_cleaned_files import *
 import subprocess
-from files2rouge import files2rouge
+# from files2rouge import files2rouge
 import multiprocessing as mp
 from IPython import embed
 import time
@@ -18,12 +18,12 @@ MIN_LENGTH = 35
 for i in range(0, len(THRESHOLDS)):
     THRESHOLDS[i] = str(THRESHOLDS[i])
 
-def create_validation_files_domain(dataset, domain, type_s, file_list):
-    files_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files")
+def create_validation_files_domain(dataset, domain, type_s, file_list, split = "validation"):
+    files_dir = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_files")
     if not os.path.exists(files_dir):
         os.mkdir(files_dir)
 
-    files_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files", type_s)
+    files_dir = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_files", type_s)
     if not os.path.exists(files_dir):
         os.mkdir(files_dir)
 
@@ -33,21 +33,24 @@ def create_validation_files_domain(dataset, domain, type_s, file_list):
 
     for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]: # For cnndm
     # for threshold in [0, 0.5, 0.55, 0.575, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65,  0.8 ]:  # For nytimes
-        print("Creating validation files for Dataset: {}, Domain: {} and Threshold: {}".format(dataset, domain, str(threshold)))
+        print("Creating " + split + " files for Dataset: {}, Domain: {} and Threshold: {}".format(dataset, domain, str(threshold)))
         save_dir = os.path.join(files_dir, str(threshold))
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
         create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, threshold=threshold)
 
-def create_validation_files(dataset, type_s):
+def create_validation_files(dataset, type_s, split = "validation"):
     for domain in DOMAINS:
-        file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "val_file_list.txt")
+        if split == "validation":
+            file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "val_file_list.txt")
+        if split == "test":
+            file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "test_file_list.txt")
+
         file_list = open(file_list_file).read().strip().split("\n")
-        create_validation_files_domain(dataset, domain, type_s, file_list)
+        create_validation_files_domain(dataset, domain, type_s, file_list, split)
 
 def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
-
     files = [orig_file, cleaned_file]
     for j in range(0, 2):
         fname = files[j]
@@ -137,8 +140,8 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     subprocess.call(cmd)
     os.chdir("../../Code")
 
-def validate_domain(dataset, domain, type_s, summarizer):
-    val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files", type_s)
+def validate_domain(dataset, domain, type_s, summarizer, split = "validation"):
+    val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_files", type_s)
     val_dir = os.path.abspath(val_dir)
 
     subdirs = os.listdir(val_dir)
@@ -155,7 +158,7 @@ def validate_domain(dataset, domain, type_s, summarizer):
         else:
             orig = False
 
-        print("Validating for threshold = " + threshold_dir.split("/")[-1])
+        print(split + " : threshold = " + threshold_dir.split("/")[-1])
         if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
             run_time = opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = MIN_LENGTH, orig = orig)
         print(threshold, "Time: " + str(run_time))
@@ -225,8 +228,8 @@ def calculate_rouge_parallel(val_dir, threshold_dir, summarizer, JobQueue):
         avg_reduction += 1.0 / len(orig_articles) * tmp
     JobQueue.put( ( threshold, f, avg_reduction ) )
 
-def calculate_rouge(dataset, domain, type_s, summarizer, save_file = "./rouge.pkl"):
-    val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, "validation_files", type_s)
+def calculate_rouge(dataset, domain, type_s, summarizer, split = "validation", save_file = "./rouge.pkl"):
+    val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_files", type_s)
     val_dir = os.path.abspath(val_dir)
 
     r1 = []
@@ -286,6 +289,7 @@ if __name__ == "__main__":
     args.add_argument("-dataset", type=str, default=None)
     args.add_argument("-type_s", type=str, default = "importance")
     args.add_argument("-summarizer", type=str, default = "opennmt")
+    args.add_argument("-split", type=str, default = "validation")
     opts = args.parse_args()
 
     if opts.dataset in ["cnn", "cnndm", "gigaword"] :
@@ -293,9 +297,9 @@ if __name__ == "__main__":
 
     DOMAINS = ['All']
 
-    # create_validation_files(opts.dataset, opts.type_s)
+    # create_validation_files(opts.dataset, opts.type_s, opts.split)
 
     for domain in DOMAINS:
-        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer)
+        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer, ops.split)
 
-    # calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
+    # calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.split, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
