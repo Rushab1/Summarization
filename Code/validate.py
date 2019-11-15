@@ -5,15 +5,22 @@ import numpy as np
 import sys
 from create_cleaned_files import *
 import subprocess
-# from files2rouge import files2rouge
+from files2rouge import files2rouge
 import multiprocessing as mp
 from IPython import embed
 import time
 import random
 
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
-THRESHOLDS = [0, 0.55, 0.6, 0.65, 0.67, 0.7, 0.75, 0.8]
-MIN_LENGTH = 35
+
+# THRESHOLDS = [0, 0.55, 0.6, 0.65, 0.67, 0.7, 0.75, 0.8] #reduced CNNDM
+# THRESHOLDS = [ 0.65, 0.67, 0.7, 0.75, 0.8] #reduced CNNDM
+# THRESHOLDS = [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9] # For cnndm
+
+THRESHOLDS = [0, 0.5, 0.6, 0.61, 0.62, 0.63, 0.64 , 0.65, 0.55, 0.575, 0.625, 0.675,  0.7, 0.8 ]  # For nytimes
+
+MIN_LENGTH = 75
+NUM_NYT_TEST_FILES = 10000
 
 for i in range(0, len(THRESHOLDS)):
     THRESHOLDS[i] = str(THRESHOLDS[i])
@@ -31,8 +38,10 @@ def create_validation_files_domain(dataset, domain, type_s, file_list, split = "
     print(load_file)
     predictions_dct = pickle.load(open(load_file, "rb"))
 
-    for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]: # For cnndm
+    # for threshold in [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9]: # For cnndm
     # for threshold in [0, 0.5, 0.55, 0.575, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65,  0.8 ]:  # For nytimes
+    for threshold in THRESHOLDS:
+        threshold = float(threshold)
         print("Creating " + split + " files for Dataset: {}, Domain: {} and Threshold: {}".format(dataset, domain, str(threshold)))
         save_dir = os.path.join(files_dir, str(threshold))
         if not os.path.exists(save_dir):
@@ -48,7 +57,23 @@ def create_validation_files(dataset, type_s, split = "validation"):
             file_list_file = os.path.join("../Data/Processed_Data/", dataset, domain, "test_file_list.txt")
 
         file_list = open(file_list_file).read().strip().split("\n")
+        if dataset == "nyt":
+            import random
+            file_list = random.sample(file_list, NUM_NYT_TEST_FILES)
+
         create_validation_files_domain(dataset, domain, type_s, file_list, split)
+
+def lead_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
+    articles = open(cleaned_file).read().split("\n")
+    pred_summaries = []
+    for article in articles:
+        pred_summaries.append( " ".join (article.split()[:min_length] ))
+
+    output_file = os.path.join(output_dir,'pred_cleaned_lead' + str(min_length) + '.txt')
+    print(output_file)
+    f = open(output_file, "w")
+    f.write("\n".join(pred_summaries))
+    f.close()
 
 def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = False):
     files = [orig_file, cleaned_file]
@@ -69,6 +94,7 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
         g.write("\n".join(f))
         g.close()
         files[j] = os.path.abspath("../TMP/" + r + ".txt")
+        print(r)
     orig_file = files[0]
     cleaned_file = files[1]
 
@@ -80,7 +106,7 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
                        'pred_cleaned_opennmt' + str(min_length) + '.txt'),
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
-            '-batch_size', str(3),
+            '-batch_size', str(2),
             '-gpu', '0',
             ]
 
@@ -116,7 +142,7 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
             '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
             '-output_file', os.path.join(output_dir, 'pred_cleaned_fastabs' + str(min_length) +'.txt'),
             '-min_length', str(min_length),
-            '-batchsize', str(100),
+            '-batchsize', str(500),
             ]
 
     os.chdir("../Summarizers/fast_abs_rl/")
@@ -127,18 +153,18 @@ def fast_abs_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = 
     if not orig:
         return
 
-    cmd = ['python', 'summarize.py',
-            '-articles_file', os.path.abspath(orig_file),
-            '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
-            '-output_file', os.path.join(output_dir, 'pred_orig_opennmt' + str(min_length) + '.txt'),
-            '-min_length', str(min_length),
-            '-batchsize', str(100)
-            ]
+    # cmd = ['python', 'summarize.py',
+            # '-articles_file', os.path.abspath(orig_file),
+            # '-abstracts_file', os.path.join(output_dir, 'abstracts.txt'),
+            # '-output_file', os.path.join(output_dir, 'pred_orig_opennmt' + str(min_length) + '.txt'),
+            # '-min_length', str(min_length),
+            # '-batchsize', str(100)
+            # ]
 
 
-    os.chdir("../Summarizers/fast_abs_rl/")
-    subprocess.call(cmd)
-    os.chdir("../../Code")
+    # os.chdir("../Summarizers/fast_abs_rl/")
+    # subprocess.call(cmd)
+    # os.chdir("../../Code")
 
 def validate_domain(dataset, domain, type_s, summarizer, split = "validation"):
     val_dir = os.path.join("../Data/Processed_Data/", dataset, domain, split + "_files", type_s)
@@ -159,17 +185,20 @@ def validate_domain(dataset, domain, type_s, summarizer, split = "validation"):
             orig = False
 
         print(split + " : threshold = " + threshold_dir.split("/")[-1])
+
+        if summarizer.lower() == "lead":
+            lead_summarizer(orig_file, cleaned_file, threshold_dir, min_length = MIN_LENGTH, orig = orig)
         if summarizer.lower() == "opennmt" or summarizer.lower() == "opennmt-py":
             run_time = opennmt_summarizer(orig_file, cleaned_file, threshold_dir, min_length = MIN_LENGTH, orig = orig)
-        print(threshold, "Time: " + str(run_time))
+            print(threshold, "Time: " + str(run_time))
 
         if summarizer.lower() == "fastabs" or summarizer.lower() == "fast-abs":
-            fast_abs_summarizer(orig_file, cleaned_file, threshold_dir, min_length = 75, orig = orig)
+            fast_abs_summarizer(orig_file, cleaned_file, threshold_dir, min_length = MIN_LENGTH, orig = orig)
 
 def calculate_rouge_parallel(val_dir, threshold_dir, summarizer, JobQueue):
     threshold_dir = os.path.abspath(os.path.join(val_dir, threshold_dir))
     abstracts_file = os.path.join(threshold_dir, "abstracts.txt")
-    pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned_" + summarizer + ".txt")
+    pred_cleaned_file = os.path.join(threshold_dir, "pred_cleaned_" + summarizer + str(MIN_LENGTH) + ".txt")
 
     for fname in [abstracts_file, pred_cleaned_file]:
         f = open(fname).read()
@@ -248,9 +277,10 @@ def calculate_rouge(dataset, domain, type_s, summarizer, split = "validation", s
     jobs = []
 
     for threshold_dir in subdirs:
-        pred_fname = "pred_cleaned_" + summarizer + ".txt"
-        if not os.path.exists(os.path.join(val_dir, threshold_dir, pred_fname)):
-                continue
+        pred_fname = "pred_cleaned_" + summarizer + str(MIN_LENGTH) + ".txt"
+        if not os.path.exists(os.path.join(val_dir, threshold_dir, pred_fname )):
+            print("ERROR 1 ", os.path.join(val_dir, threshold_dir, pred_fname) )
+            continue
 
 
         job = pool.apply_async( calculate_rouge_parallel,
@@ -290,8 +320,10 @@ if __name__ == "__main__":
     args.add_argument("-type_s", type=str, default = "importance")
     args.add_argument("-summarizer", type=str, default = "opennmt")
     args.add_argument("-split", type=str, default = "validation")
+    args.add_argument("-min_length", type=int, default = 75)
     opts = args.parse_args()
 
+    MIN_LENGTH = opts.min_length
     if opts.dataset in ["cnn", "cnndm", "gigaword"] :
         DOMAINS = ['All']
 
@@ -300,6 +332,7 @@ if __name__ == "__main__":
     # create_validation_files(opts.dataset, opts.type_s, opts.split)
 
     for domain in DOMAINS:
-        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer, ops.split)
+        validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer, opts.split)
 
-    # calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.split, opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + "_rouge.pkl")
+    save_file = "Results/" + opts.split.upper() + "_" + opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + str(MIN_LENGTH) + "_rouge.pkl"
+    calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.split, save_file)

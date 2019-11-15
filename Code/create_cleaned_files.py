@@ -84,8 +84,16 @@ def create_cleaned_files_list(dataset, file_list, predictions_dct, save_dir, thr
             orig.write("\n ")
             cleaned.write("\n " )
             abstracts.write("\n ")
+
+    print("======================================================")
+    print("======================================================")
+    print("======================================================")
+
     print(cnt, cnt2)
 
+    print("======================================================")
+    print("======================================================")
+    print("======================================================")
     orig.close()
     cleaned.close()
     abstracts.close()
