@@ -405,6 +405,19 @@ if __name__ == "__main__":
         get_sentence_embeddings("gigaword", opts.parallelism , device)
         score_sentences("gigaword", opts.parallelism)
 
+    if opts.dataset == "Soham":
+        DOMAINS = ["All"]
+        if not os.path.exists("../Data/Processed_Data/Soham"):
+            os.mkdir("../Data/Processed_Data/Soham")
+            os.mkdir("../Data/Processed_Data/Soham/pkl_files/")
+            os.mkdir("../Data/Processed_Data/Soham/pkl_files/shards")
+            os.mkdir("../Data/Processed_Data/Soham/pkl_files/shards/0")
+            os.system("cp ../Data/Datasets/Soham/selected_sentences.csv ../Data/Processed_Data/Soham/pkl_files/Sentences.txt")
+            os.system("cp ../Data/Datasets/Soham/selected_sentences.csv ../Data/Processed_Data/Soham/pkl_files/shards/0/Sentences.txt")
+
+        get_sentence_embeddings(opts.dataset, opts.parallelism, device)
+
+
     if opts.dataset in ["ontonotes_mz", "ontonotes_wsj", "ontonotes_tc"]:
         DOMAINS = ["All"]
         get_file_list(

@@ -67,7 +67,7 @@ def analyze_histograms(pkl_file, thresholds = [0, 0.3, 0.4, 0.5, 0.6, 0.6, 0.7, 
 
 def main(dataset, type_s, trained_on_dataset):
     for domain in DOMAINS:
-        if trained_on_dataset != None:
+        if trained_on_dataset != dataset:
             predictions_file = os.path.join("../Data/Cross_Classifier_Predictions/",
                                         trained_on_dataset,
                                         dataset + ".pkl")
@@ -101,9 +101,9 @@ def main(dataset, type_s, trained_on_dataset):
             file_list[i] = (dataset, file_list[i])
 
         if trained_on_dataset == None:
-            save_file = "../TMP/" + dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
+            save_file = "./Results/Source_Analysis/hist_analysis_" + dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
         else:
-            save_file = "../TMP/" + trained_on_dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
+            save_file = "./Results/Source_Analysis/hist_analysis_" + trained_on_dataset + "_" + dataset + domain + "file_histograms_clf.pkl"
 
         predictions = pickle.load(open(predictions_file, "rb"))
 
@@ -117,24 +117,27 @@ def main(dataset, type_s, trained_on_dataset):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument("-dataset", type=str, required = True)
-    args.add_argument("-trained_on_dataset", default=None)
     args.add_argument("-type_s", type=str, default="importance")
     opts = args.parse_args()
 
-    if opts.dataset not in ["nyt"]:
-        DOMAINS = ["All"]
+    # for trained_on_dataset in ["cnndm", "nyt"]:
+    for trained_on_dataset in ["nyt"]:
+        # for dataset in tqdm(["cnndm", "nyt", "gigaword", "ontonotes_mz", "ontonotes_wsj", "ontonotes_tc"]):
+        for dataset in tqdm([ "gigaword", "ontonotes_mz", "ontonotes_wsj", "ontonotes_tc"]):
+            if dataset not in ["nyt"]:
+                DOMAINS = ["All"]
+            else:
+                DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
+            main( dataset, "importance", trained_on_dataset)
 
-    # main(opts.dataset, opts.type_s, opts.trained_on_dataset)
+        result = {}
+        for f in os.listdir("Results/Source_Analysis/"):
+            if f.startswith("hist_analysis"):
+                result_f = analyze_histograms("Results/Source_Analysis/" + f)
+                f = f.replace(".pkl", "")
+                result[f] = result_f
+                print(f)
+                print(result_f)
+                print("\n")
 
-    result = {}
-    for f in os.listdir("../TMP/"):
-        if f.startswith(opts.trained_on_dataset):
-            result_f = analyze_histograms("../TMP/" + f)
-            f = f.replace(".pkl", "")
-            result[f] = result_f
-            print(f)
-            print(result_f)
-            print("\n")
-
-    pickle.dump(result, open(opts.trained_on_dataset + "_hist_analysis_for_clf.pkl", "wb"))
+            pickle.dump(result, open( "Results/" + trained_on_dataset + "_hist_analysis_for_clf.pkl", "wb"))

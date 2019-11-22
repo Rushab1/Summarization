@@ -13,11 +13,11 @@ import random
 
 DOMAINS = ["Business", "Sports", "Science", "USIntlRelations", "All"]
 
-# THRESHOLDS = [0, 0.55, 0.6, 0.65, 0.67, 0.7, 0.75, 0.8] #reduced CNNDM
+THRESHOLDS = [0, 0.55, 0.6, 0.65, 0.67, 0.7, 0.75, 0.8] #reduced CNNDM
 # THRESHOLDS = [ 0.65, 0.67, 0.7, 0.75, 0.8] #reduced CNNDM
 # THRESHOLDS = [0, 0.3, 0.5, 0.55, 0.6, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.75, 0.8, 0.9] # For cnndm
 
-THRESHOLDS = [0, 0.5, 0.6, 0.61, 0.62, 0.63, 0.64 , 0.65, 0.55, 0.575, 0.625, 0.675,  0.7, 0.8 ]  # For nytimes
+# THRESHOLDS = [0, 0.5, 0.6, 0.61, 0.62, 0.63, 0.64 , 0.65, 0.55, 0.575, 0.625, 0.675,  0.7, 0.8 ]  # For nytimes
 
 MIN_LENGTH = 75
 NUM_NYT_TEST_FILES = 10000
@@ -107,7 +107,7 @@ def opennmt_summarizer(orig_file, cleaned_file, output_dir, min_length, orig = F
             '-ignore_when_blocking', '"." "</t>" "<t>"',
             '-min_length', str(min_length),
             '-batch_size', str(2),
-            '-gpu', '0',
+            # '-gpu', '0',
             ]
 
     print(" ".join(cmd))
@@ -334,5 +334,5 @@ if __name__ == "__main__":
     for domain in DOMAINS:
         validate_domain(opts.dataset, domain, opts.type_s, opts.summarizer, opts.split)
 
-    save_file = "Results/" + opts.split.upper() + "_" + opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + str(MIN_LENGTH) + "_rouge.pkl"
-    calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.split, save_file)
+    # save_file = "Results/" + opts.split.upper() + "_" + opts.dataset + "_" + opts.type_s + "_" + opts.summarizer + str(MIN_LENGTH) + "_rouge.pkl"
+    # calculate_rouge(opts.dataset, "All", opts.type_s, opts.summarizer, opts.split, save_file)
